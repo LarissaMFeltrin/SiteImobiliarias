@@ -18,3 +18,5 @@
 <link href="assets/vendor/floating-whatsapp/floating-wpp.css" rel="stylesheet">
 
 <link href="assets/css/style.css" rel="stylesheet">
+
+@yield('style')

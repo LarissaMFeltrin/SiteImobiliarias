@@ -11,4 +11,14 @@ class SiteController extends Controller
     {
         return view('site.home.index');
     }
+
+    public function empresa()
+    {
+        return view('site.empresa.index');
+    }
+
+    public function contato()
+    {
+        return view('site.contato.index');
+    }
 }

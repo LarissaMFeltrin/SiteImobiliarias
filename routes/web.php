@@ -16,3 +16,5 @@ use App\Http\Controllers\Site\SiteController;
 */
 
 Route::get('/', [SiteController::class, 'index'])->name('home');
+Route::get('/empresa', [SiteController::class, 'empresa'])->name('empresa');
+Route::get('/contato', [SiteController::class, 'contato'])->name('contato');
