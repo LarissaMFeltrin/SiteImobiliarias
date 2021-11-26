@@ -1,6 +1,7 @@
 @extends('site.layout.app')
 
 @section('hero-banner')
+
 @endsection
 
 @section('busca')
@@ -11,10 +12,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <img src="{{ asset('images/about.jpeg') }}" class="img-fluid" alt="">
+                    <img src="{{ asset('images/about.jpeg') }}" class="img-fluid w-100" alt="">
                 </div>
                 <div class="col-12 mt-3">
-                    <p class="text-justify">
+                    <p style="text-align: justify;">
                         O Sr. Silvério Domingues, atuante no mercado imobiliário há quase 50 anos, fundou, em 1988, a Samburá Imóveis, empresa que trabalha sobre os pilares da confiança e credibilidade para prestar sempre o melhor serviço aos seus clientes.
                         <br><br>
                         A Samburá Imóveis é dirigida pelos irmãos Silvio Luiz Domingues, Diretor de Vendas e Marcos Ricardo Domingues, Diretor de Locação e Administração e desde 2009 entrou em sua terceira geração, com o início das atividades de Gabriel Zaupa Domingues, hoje Gerente Comercial.
@@ -46,7 +47,7 @@
         border-color: red;
     }
     #main{
-        margin-top: 160px !important;
+        margin-top: 200px !important;
     }
 </style>
 @endsection

@@ -3,6 +3,11 @@
 @section('hero-banner')
 <section id="hero">
 </section>
+<div class="unimob">
+    <a href="https://www.unimob.com.br/" target="_" class="" title="Unimob">
+        <img src="{{ asset('images/unimob_.png') }}" class="img-fluid" alt="">
+    </a>
+</div>
 @endsection
 
 @section('busca')
@@ -71,9 +76,9 @@
                             </div>
                             <div class="member-info">
                                 <h4>R$ 570.00</h4>
-                                <span title="PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE">
-                                    {{ mb_strimwidth("PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE", 0, 52, "...") }}
-                                </span>
+                                <h4 style="font-size: 11px">
+                                    PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE
+                                </h4>
                                 <div class="social">
                                     <a title="Dormitórios"><i class="fa fa-bed" aria-hidden="true"></i> 3</a>   |
                                     <a title="Banheiros"<i class="fa fa-shower" aria-hidden="true"></i> 2</a>   |
@@ -90,9 +95,9 @@
                             </div>
                             <div class="member-info">
                                 <h4>R$ 570.00</h4>
-                                <span title="PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE">
-                                    {{ mb_strimwidth("PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE", 0, 52, "...") }}
-                                </span>
+                                <h4 style="font-size: 11px">
+                                    PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE
+                                </h4>
                                 <div class="social">
                                     <a title="Dormitórios"><i class="fa fa-bed" aria-hidden="true"></i> 3</a>   |
                                     <a title="Banheiros"<i class="fa fa-shower" aria-hidden="true"></i> 2</a>   |
@@ -109,29 +114,9 @@
                             </div>
                             <div class="member-info">
                             <h4>R$ 570.00</h4>
-                            <span title="PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE">
-                                {{ mb_strimwidth("PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE", 0, 52, "...") }}
-                            </span>
-                                <div class="social">
-                                    <a><i class="fa fa-bed" aria-hidden="true"></i> 3</a>           |
-                                    <a title="Dormitórios"><i class="fa fa-bed" aria-hidden="true"></i> 3</a>   |
-                                    <a title="Banheiros"<i class="fa fa-shower" aria-hidden="true"></i> 2</a>   |
-                                    <a title="Vagas"><i class="fa fa-car" aria-hidden="true"></i> 1</a>         |
-                                    <a title="Suítes"><i class="fa fa-bath" aria-hidden="true"></i> 4</a>       |
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide col-lg-4 col-md-6">
-                        <div class="member">
-                            <div class="pic">
-                                <img src="{{ asset('images/imovel/imgr-000031851.jpg') }}" class="img-fluid" alt="">
-                            </div>
-                            <div class="member-info">
-                            <h4>R$ 570.00</h4>
-                            <span title="PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE">
-                                {{ mb_strimwidth("PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE", 0, 52, "...") }}
-                            </span>
+                            <h4 style="font-size: 11px">
+                                PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE
+                            </h4>
                                 <div class="social">
                                     <a><i class="fa fa-bed" aria-hidden="true"></i> 3</a>           |
                                     <a title="Dormitórios"><i class="fa fa-bed" aria-hidden="true"></i> 3</a>   |
@@ -149,9 +134,29 @@
                             </div>
                             <div class="member-info">
                             <h4>R$ 570.00</h4>
-                            <span title="PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE">
-                                {{ mb_strimwidth("PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE", 0, 52, "...") }}
-                            </span>
+                            <h4 style="font-size: 11px">
+                                PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE
+                            </h4>
+                                <div class="social">
+                                    <a><i class="fa fa-bed" aria-hidden="true"></i> 3</a>           |
+                                    <a title="Dormitórios"><i class="fa fa-bed" aria-hidden="true"></i> 3</a>   |
+                                    <a title="Banheiros"<i class="fa fa-shower" aria-hidden="true"></i> 2</a>   |
+                                    <a title="Vagas"><i class="fa fa-car" aria-hidden="true"></i> 1</a>         |
+                                    <a title="Suítes"><i class="fa fa-bath" aria-hidden="true"></i> 4</a>       |
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide col-lg-4 col-md-6">
+                        <div class="member">
+                            <div class="pic">
+                                <img src="{{ asset('images/imovel/imgr-000031851.jpg') }}" class="img-fluid" alt="">
+                            </div>
+                            <div class="member-info">
+                            <h4>R$ 570.00</h4>
+                            <h4 style="font-size: 11px">
+                                PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE
+                            </h4>
                                 <div class="social">
                                     <a><i class="fa fa-bed" aria-hidden="true"></i> 3</a>           |
                                     <a title="Dormitórios"><i class="fa fa-bed" aria-hidden="true"></i> 3</a>   |
@@ -188,9 +193,9 @@
                             </div>
                             <div class="member-info">
                                 <h4>R$ 570.00</h4>
-                                <span title="PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE">
-                                    {{ mb_strimwidth("PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE", 0, 52, "...") }}
-                                </span>
+                                <h4 style="font-size: 11px">
+                                    PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE
+                                </h4>
                                 <div class="social">
                                     <a title="Dormitórios"><i class="fa fa-bed" aria-hidden="true"></i> 3</a>   |
                                     <a title="Banheiros"<i class="fa fa-shower" aria-hidden="true"></i> 2</a>   |
@@ -207,9 +212,9 @@
                             </div>
                             <div class="member-info">
                                 <h4>R$ 570.00</h4>
-                                <span title="PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE">
-                                    {{ mb_strimwidth("PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE", 0, 52, "...") }}
-                                </span>
+                                <h4 style="font-size: 11px">
+                                    PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE
+                                </h4>
                                 <div class="social">
                                     <a title="Dormitórios"><i class="fa fa-bed" aria-hidden="true"></i> 3</a>   |
                                     <a title="Banheiros"<i class="fa fa-shower" aria-hidden="true"></i> 2</a>   |
@@ -226,29 +231,9 @@
                             </div>
                             <div class="member-info">
                             <h4>R$ 570.00</h4>
-                            <span title="PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE">
-                                {{ mb_strimwidth("PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE", 0, 52, "...") }}
-                            </span>
-                                <div class="social">
-                                    <a><i class="fa fa-bed" aria-hidden="true"></i> 3</a>           |
-                                    <a title="Dormitórios"><i class="fa fa-bed" aria-hidden="true"></i> 3</a>   |
-                                    <a title="Banheiros"<i class="fa fa-shower" aria-hidden="true"></i> 2</a>   |
-                                    <a title="Vagas"><i class="fa fa-car" aria-hidden="true"></i> 1</a>         |
-                                    <a title="Suítes"><i class="fa fa-bath" aria-hidden="true"></i> 4</a>       |
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide col-lg-4 col-md-6">
-                        <div class="member">
-                            <div class="pic">
-                                <img src="{{ asset('images/imovel/imgr-000031851.jpg') }}" class="img-fluid" alt="">
-                            </div>
-                            <div class="member-info">
-                            <h4>R$ 570.00</h4>
-                            <span title="PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE">
-                                {{ mb_strimwidth("PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE", 0, 52, "...") }}
-                            </span>
+                            <h4 style="font-size: 11px">
+                                PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE
+                            </h4>
                                 <div class="social">
                                     <a><i class="fa fa-bed" aria-hidden="true"></i> 3</a>           |
                                     <a title="Dormitórios"><i class="fa fa-bed" aria-hidden="true"></i> 3</a>   |
@@ -266,9 +251,29 @@
                             </div>
                             <div class="member-info">
                             <h4>R$ 570.00</h4>
-                            <span title="PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE">
-                                {{ mb_strimwidth("PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE", 0, 52, "...") }}
-                            </span>
+                            <h4 style="font-size: 11px">
+                                PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE
+                            </h4>
+                                <div class="social">
+                                    <a><i class="fa fa-bed" aria-hidden="true"></i> 3</a>           |
+                                    <a title="Dormitórios"><i class="fa fa-bed" aria-hidden="true"></i> 3</a>   |
+                                    <a title="Banheiros"<i class="fa fa-shower" aria-hidden="true"></i> 2</a>   |
+                                    <a title="Vagas"><i class="fa fa-car" aria-hidden="true"></i> 1</a>         |
+                                    <a title="Suítes"><i class="fa fa-bath" aria-hidden="true"></i> 4</a>       |
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide col-lg-4 col-md-6">
+                        <div class="member">
+                            <div class="pic">
+                                <img src="{{ asset('images/imovel/imgr-000031851.jpg') }}" class="img-fluid" alt="">
+                            </div>
+                            <div class="member-info">
+                            <h4>R$ 570.00</h4>
+                            <h4 style="font-size: 11px">
+                                PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE
+                            </h4>
                                 <div class="social">
                                     <a><i class="fa fa-bed" aria-hidden="true"></i> 3</a>           |
                                     <a title="Dormitórios"><i class="fa fa-bed" aria-hidden="true"></i> 3</a>   |
@@ -291,15 +296,43 @@
 <section id="cta" class="cta mb-5">
     <div class="container">
         <div class="text-center">
-            <h3>A Samburá Imóveis é reconhecida por ser administradora com talento e sensibilidade para atender e orientar os seus clientes</h3>
+            <h3>
+                O Sr. Silvério Domingues, atuante no mercado imobiliário há quase 50 anos, fundou, em 1988,
+                a Samburá Imóveis, empresa que trabalha sobre os pilares da confiança e credibilidade para
+                prestar sempre o melhor serviço aos seus clientes.
+            </h3>
             <p>
-                Antenada a evolução do mercado, a Samburá Imóveis investe em tecnologia,
-                inteligência e inovação, além de alta capacitação de seus colaboradores,
-                para oferecer sempre excelência no desenvolvimento dos negócios.
+                Hoje trabalhamos com aluguel, compra e venda de casas, terrenos, apartamentos, imóveis comerciais,
+                condomínios fechados horizontais e verticais, além de vendas em lançamentos e avaliação de imóveis.
             </p>
-            <a class="cta-btn scrollto" href="#">Conheça!</a>
+            <a class="cta-btn scrollto" href="#">Conheça nossa história!</a>
         </div>
     </div>
 </section>
 <!-- END ABOUT -->
+@endsection
+
+@section('style')
+<style>
+    .unimob{
+        z-index: 999;
+        max-width: 100px;
+        margin-top: -120px;
+        margin-left: 93%;
+        display: flex;
+        position: relative;
+        text-align: right;
+    }
+
+    @media (max-width: 768px) {
+        .unimob{
+            z-index: 999;
+            margin-top: -80px;
+            margin-left: 85%;
+            width: 80px;
+            display: flex;
+            position: relative;
+        }
+    }
+</style>
 @endsection

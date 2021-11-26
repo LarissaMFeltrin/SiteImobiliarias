@@ -12,7 +12,7 @@
                 <p style="padding: 10px">
                 Av. Manoel Goulart, nº 875 - Centro, <br>
                 Pres. Prudente - SP, <br>
-                19015-240
+                CEP: 19015-240
                 </a>
                 <br>
                 <strong>CRECI-SP 9.221 - J </strong> <br>
@@ -46,10 +46,10 @@
           <div class="col-lg-3 col-md-6">
               <div class="social-links mt-3">
                 <a href="https://www.facebook.com/sambura.imov" target="_" class="facebook" title="Facebook">
-                    <i class="bx bxl-facebook"></i>
+                    <img src="{{ asset('images/facebook.png') }}" alt="" class="img-fluid" style="max-width: 20px">
                 </a>
                 <a href="https://www.instagram.com/samburaimoveis" target="_" class="instagram" title="Instagram">
-                    <i class="bx bxl-instagram"></i>
+                    <img src="{{ asset('images/instagram.png') }}" alt="" class="img-fluid" style="max-width: 20px">
                 </a>
 
                 <a href="https://soundcloud.com/sambukacast" target="_" class="instagram" title="SamburaCast">

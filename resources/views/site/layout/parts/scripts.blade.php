@@ -23,9 +23,9 @@
             showPopup: true,
             showOnIE: true,
             headerTitle: 'Sambura Imóveis',
-            headerColor: '#075e54',
+            headerColor: '#25D366',
             backgroundColor: '#075e54',
-            buttonImage: `<img src="{{ asset('images/whatsapp.svg') }}" />`
+            buttonImage: `<img src="{{ asset('images/whatsapp.png') }}" />`
         });
     });
 </script>
