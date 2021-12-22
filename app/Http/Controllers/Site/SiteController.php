@@ -21,4 +21,14 @@ class SiteController extends Controller
     {
         return view('site.contato.index');
     }
+
+    public function venda()
+    {
+        return view('site.venda.index');
+    }
+
+    public function imovel()
+    {
+        return view('site.imovel.index');
+    }
 }

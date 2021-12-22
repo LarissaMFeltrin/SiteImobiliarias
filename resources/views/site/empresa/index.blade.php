@@ -1,7 +1,6 @@
 @extends('site.layout.app')
 
 @section('hero-banner')
-
 @endsection
 
 @section('busca')
@@ -35,7 +34,11 @@
 @section('style')
 <style>
     #header{
-        background-color: #f1f1f1 !important;
+        background-image: url("{{ asset('images/banner_00.jpg') }}");
+        background-repeat: no-repeat, repeat;
+        background-size: 100%;
+        background-attachment: fixed;
+        background-position: 0px top;
     }
     #header a{
         color: black;

@@ -17,12 +17,16 @@
                 </a>
             </li>
             <li class="dropdown">
-                <a href="#">
+                <a href="#" class="@if(Route::currentRouteName() === 'venda') active @endif">
                     <span>Busca</span>
                     <i class="bi bi-chevron-down"></i>
                 </a>
                 <ul>
-                <li><a href="#">Venda</a></li>
+                <li>
+                    <a href="{{ route('venda') }}">
+                        Venda
+                    </a>
+                </li>
                 <li><a href="#">Locação</a></li>
                 </ul>
             </li>
@@ -41,6 +45,14 @@
                 <li><a href="#">Área do Atendente</a></li>
                 </ul>
             </li>
+
+            <li>
+                <a
+                class="nav-link scrollto"
+                href="#">
+                    News
+                </a>
+            </li>
             <li>
                 <a
                 class="nav-link scrollto
@@ -58,7 +70,8 @@
             </li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+      </nav>
+      <!-- .navbar -->
 
     </div>
   </header>
