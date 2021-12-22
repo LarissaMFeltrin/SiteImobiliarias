@@ -22,3 +22,7 @@ Route::get('/contato', [SiteController::class, 'contato'])->name('contato');
 Route::get('/venda', [SiteController::class, 'venda'])->name('venda');
 
 Route::get('/imovel/', [SiteController::class, 'imovel'])->name('imovel');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
