@@ -15,14 +15,15 @@ use App\Http\Controllers\Site\SiteController;
 |
 */
 
-Route::get('/', [SiteController::class, 'index'])->name('home');
+Route::get('/', [SiteController::class, 'index'])->name('index');
+Route::get('/home', [SiteController::class, 'index'])->name('home');
 Route::get('/empresa', [SiteController::class, 'empresa'])->name('empresa');
 Route::get('/contato', [SiteController::class, 'contato'])->name('contato');
 
 Route::get('/venda', [SiteController::class, 'venda'])->name('venda');
+Route::get('/locacao', [SiteController::class, 'locacao'])->name('locacao');
+Route::get('/busca_rapida', [SiteController::class, 'busca_rapida'])->name('busca.rapida');
 
 Route::get('/imovel/', [SiteController::class, 'imovel'])->name('imovel');
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

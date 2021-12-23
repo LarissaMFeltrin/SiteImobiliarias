@@ -44,6 +44,12 @@
     </div>
 </section>
 
+@section('scripts')
+<script>
+
+</script>
+@endsection
+
 @section('style')
 <style>
 </style>

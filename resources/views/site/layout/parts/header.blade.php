@@ -2,7 +2,7 @@
     <div class="container d-flex align-items-center justify-content-between">
 
       <!--<h1 class="logo"><a href="index.html">Dewi</a></h1>-->
-        <a href="{{ route('home') }}" class="logo">
+        <a href="{{ route('index') }}" class="logo">
           <img src="{{ asset('images/logotipo.png') }}" alt="" class="img-fluid">
         </a>
 
@@ -12,12 +12,12 @@
                 <a
                 class="nav-link scrollto
                 @if(Route::currentRouteName() === 'home') active @endif"
-                href="{{ route('home') }}">
+                href="{{ route('index') }}">
                     Home &nbsp;
                 </a>
             </li>
             <li class="dropdown">
-                <a href="#" class="@if(Route::currentRouteName() === 'venda') active @endif">
+                <a href class="@if(Route::currentRouteName() === 'venda') active @endif">
                     <span>Busca</span>
                     <i class="bi bi-chevron-down"></i>
                 </a>
@@ -27,7 +27,11 @@
                         Venda
                     </a>
                 </li>
-                <li><a href="#">Locação</a></li>
+                <li>
+                    <a href="{{ route('locacao') }}">
+                        Locação
+                    </a>
+                </li>
                 </ul>
             </li>
             <li>

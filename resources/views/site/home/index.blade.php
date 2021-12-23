@@ -19,104 +19,27 @@
         <div class="row">
             <div class="swiper team-swiper">
                 <div class="swiper-wrapper pb-3">
-                    <div class="swiper-slide col-lg-4 col-md-6">
-                        <div class="member">
-                            <div class="pic">
-                                <img src="{{ asset('images/imovel/imgr-000031851.jpg') }}" class="img-fluid" alt="">
-                            </div>
-                            <div class="member-info">
-                                <h4>R$ 570.00</h4>
-                                <h4 style="font-size: 11px">
-                                    PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE
-                                </h4>
-                                <div class="social">
-                                    <a title="Dormitórios"><i class="fa fa-bed" aria-hidden="true"></i> 3</a>   |
-                                    <a title="Banheiros"<i class="fa fa-shower" aria-hidden="true"></i> 2</a>   |
-                                    <a title="Vagas"><i class="fa fa-car" aria-hidden="true"></i> 1</a>         |
-                                    <a title="Suítes"><i class="fa fa-bath" aria-hidden="true"></i> 4</a>       |
+                    @foreach ($a_destaque_locacao as $imv)
+                        <div class="swiper-slide col-lg-4 col-md-6">
+                            <div class="member">
+                                <div class="pic">
+                                    <img src="{{ $imv['img'] }}" class="img-fluid" alt="">
+                                </div>
+                                <div class="member-info">
+                                    <h4>{{ $imv['valor'] }}</h4>
+                                    <h4 style="font-size: 11px; text-transform: uppercase;">
+                                        {{ $imv['tp_bem'] . ' PARA ' . $imv['finalidade'] . ' EM ' . $imv['cidade'] }}
+                                    </h4>
+                                    <div class="social">
+                                        <a title="Dormitórios"><i class="fa fa-bed" aria-hidden="true"></i> {{ $imv['qtde_quartos'] }}</a>   |
+                                        <a title="Banheiros"<i class="fa fa-shower" aria-hidden="true"></i> {{ $imv['qtde_banheiro'] }}</a>   |
+                                        <a title="Vagas"><i class="fa fa-car" aria-hidden="true"></i> {{ $imv['qtde_garagens'] }}</a>         |
+                                        <a title="Suítes"><i class="fa fa-bath" aria-hidden="true"></i> {{ $imv['qtde_suites'] }}</a>       |
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="swiper-slide col-lg-4 col-md-6">
-                        <div class="member">
-                            <div class="pic">
-                                <img src="{{ asset('images/imovel/imgr-000031851.jpg') }}" class="img-fluid" alt="">
-                            </div>
-                            <div class="member-info">
-                                <h4>R$ 570.00</h4>
-                                <h4 style="font-size: 11px">
-                                    PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE
-                                </h4>
-                                <div class="social">
-                                    <a title="Dormitórios"><i class="fa fa-bed" aria-hidden="true"></i> 3</a>   |
-                                    <a title="Banheiros"<i class="fa fa-shower" aria-hidden="true"></i> 2</a>   |
-                                    <a title="Vagas"><i class="fa fa-car" aria-hidden="true"></i> 1</a>         |
-                                    <a title="Suítes"><i class="fa fa-bath" aria-hidden="true"></i> 4</a>       |
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide col-lg-4 col-md-6">
-                        <div class="member">
-                            <div class="pic">
-                                <img src="{{ asset('images/imovel/imgr-000031851.jpg') }}" class="img-fluid" alt="">
-                            </div>
-                            <div class="member-info">
-                            <h4>R$ 570.00</h4>
-                            <h4 style="font-size: 11px">
-                                PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE
-                            </h4>
-                                <div class="social">
-                                    <a><i class="fa fa-bed" aria-hidden="true"></i> 3</a>           |
-                                    <a title="Dormitórios"><i class="fa fa-bed" aria-hidden="true"></i> 3</a>   |
-                                    <a title="Banheiros"<i class="fa fa-shower" aria-hidden="true"></i> 2</a>   |
-                                    <a title="Vagas"><i class="fa fa-car" aria-hidden="true"></i> 1</a>         |
-                                    <a title="Suítes"><i class="fa fa-bath" aria-hidden="true"></i> 4</a>       |
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide col-lg-4 col-md-6">
-                        <div class="member">
-                            <div class="pic">
-                                <img src="{{ asset('images/imovel/imgr-000031851.jpg') }}" class="img-fluid" alt="">
-                            </div>
-                            <div class="member-info">
-                            <h4>R$ 570.00</h4>
-                            <h4 style="font-size: 11px">
-                                PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE
-                            </h4>
-                                <div class="social">
-                                    <a><i class="fa fa-bed" aria-hidden="true"></i> 3</a>           |
-                                    <a title="Dormitórios"><i class="fa fa-bed" aria-hidden="true"></i> 3</a>   |
-                                    <a title="Banheiros"<i class="fa fa-shower" aria-hidden="true"></i> 2</a>   |
-                                    <a title="Vagas"><i class="fa fa-car" aria-hidden="true"></i> 1</a>         |
-                                    <a title="Suítes"><i class="fa fa-bath" aria-hidden="true"></i> 4</a>       |
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide col-lg-4 col-md-6">
-                        <div class="member">
-                            <div class="pic">
-                                <img src="{{ asset('images/imovel/imgr-000031851.jpg') }}" class="img-fluid" alt="">
-                            </div>
-                            <div class="member-info">
-                            <h4>R$ 570.00</h4>
-                            <h4 style="font-size: 11px">
-                                PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE
-                            </h4>
-                                <div class="social">
-                                    <a><i class="fa fa-bed" aria-hidden="true"></i> 3</a>           |
-                                    <a title="Dormitórios"><i class="fa fa-bed" aria-hidden="true"></i> 3</a>   |
-                                    <a title="Banheiros"<i class="fa fa-shower" aria-hidden="true"></i> 2</a>   |
-                                    <a title="Vagas"><i class="fa fa-car" aria-hidden="true"></i> 1</a>         |
-                                    <a title="Suítes"><i class="fa fa-bath" aria-hidden="true"></i> 4</a>       |
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
@@ -136,104 +59,27 @@
         <div class="row">
             <div class="swiper team-swiper">
                 <div class="swiper-wrapper pb-3">
-                    <div class="swiper-slide col-lg-4 col-md-6">
-                        <div class="member">
-                            <div class="pic">
-                                <img src="{{ asset('images/imovel/imgr-000031851.jpg') }}" class="img-fluid" alt="">
-                            </div>
-                            <div class="member-info">
-                                <h4>R$ 570.00</h4>
-                                <h4 style="font-size: 11px">
-                                    PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE
-                                </h4>
-                                <div class="social">
-                                    <a title="Dormitórios"><i class="fa fa-bed" aria-hidden="true"></i> 3</a>   |
-                                    <a title="Banheiros"<i class="fa fa-shower" aria-hidden="true"></i> 2</a>   |
-                                    <a title="Vagas"><i class="fa fa-car" aria-hidden="true"></i> 1</a>         |
-                                    <a title="Suítes"><i class="fa fa-bath" aria-hidden="true"></i> 4</a>       |
+                    @foreach ($a_destaque_venda as $imv)
+                        <div class="swiper-slide col-lg-4 col-md-6">
+                            <div class="member">
+                                <div class="pic">
+                                    <img src="{{ $imv['img'] }}" class="img-fluid" alt="">
+                                </div>
+                                <div class="member-info">
+                                    <h4>{{ $imv['valor'] }}</h4>
+                                    <h4 style="font-size: 11px; text-transform: uppercase;">
+                                        {{ $imv['tp_bem'] . ' PARA ' . $imv['finalidade'] . ' EM ' . $imv['cidade'] }}
+                                    </h4>
+                                    <div class="social">
+                                        <a title="Dormitórios"><i class="fa fa-bed" aria-hidden="true"></i> {{ $imv['qtde_quartos'] }}</a>   |
+                                        <a title="Banheiros"<i class="fa fa-shower" aria-hidden="true"></i> {{ $imv['qtde_banheiro'] }}</a>   |
+                                        <a title="Vagas"><i class="fa fa-car" aria-hidden="true"></i> {{ $imv['qtde_garagens'] }}</a>         |
+                                        <a title="Suítes"><i class="fa fa-bath" aria-hidden="true"></i> {{ $imv['qtde_suites'] }}</a>       |
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="swiper-slide col-lg-4 col-md-6">
-                        <div class="member">
-                            <div class="pic">
-                                <img src="{{ asset('images/imovel/imgr-000031851.jpg') }}" class="img-fluid" alt="">
-                            </div>
-                            <div class="member-info">
-                                <h4>R$ 570.00</h4>
-                                <h4 style="font-size: 11px">
-                                    PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE
-                                </h4>
-                                <div class="social">
-                                    <a title="Dormitórios"><i class="fa fa-bed" aria-hidden="true"></i> 3</a>   |
-                                    <a title="Banheiros"<i class="fa fa-shower" aria-hidden="true"></i> 2</a>   |
-                                    <a title="Vagas"><i class="fa fa-car" aria-hidden="true"></i> 1</a>         |
-                                    <a title="Suítes"><i class="fa fa-bath" aria-hidden="true"></i> 4</a>       |
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide col-lg-4 col-md-6">
-                        <div class="member">
-                            <div class="pic">
-                                <img src="{{ asset('images/imovel/imgr-000031851.jpg') }}" class="img-fluid" alt="">
-                            </div>
-                            <div class="member-info">
-                            <h4>R$ 570.00</h4>
-                            <h4 style="font-size: 11px">
-                                PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE
-                            </h4>
-                                <div class="social">
-                                    <a><i class="fa fa-bed" aria-hidden="true"></i> 3</a>           |
-                                    <a title="Dormitórios"><i class="fa fa-bed" aria-hidden="true"></i> 3</a>   |
-                                    <a title="Banheiros"<i class="fa fa-shower" aria-hidden="true"></i> 2</a>   |
-                                    <a title="Vagas"><i class="fa fa-car" aria-hidden="true"></i> 1</a>         |
-                                    <a title="Suítes"><i class="fa fa-bath" aria-hidden="true"></i> 4</a>       |
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide col-lg-4 col-md-6">
-                        <div class="member">
-                            <div class="pic">
-                                <img src="{{ asset('images/imovel/imgr-000031851.jpg') }}" class="img-fluid" alt="">
-                            </div>
-                            <div class="member-info">
-                            <h4>R$ 570.00</h4>
-                            <h4 style="font-size: 11px">
-                                PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE
-                            </h4>
-                                <div class="social">
-                                    <a><i class="fa fa-bed" aria-hidden="true"></i> 3</a>           |
-                                    <a title="Dormitórios"><i class="fa fa-bed" aria-hidden="true"></i> 3</a>   |
-                                    <a title="Banheiros"<i class="fa fa-shower" aria-hidden="true"></i> 2</a>   |
-                                    <a title="Vagas"><i class="fa fa-car" aria-hidden="true"></i> 1</a>         |
-                                    <a title="Suítes"><i class="fa fa-bath" aria-hidden="true"></i> 4</a>       |
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide col-lg-4 col-md-6">
-                        <div class="member">
-                            <div class="pic">
-                                <img src="{{ asset('images/imovel/imgr-000031851.jpg') }}" class="img-fluid" alt="">
-                            </div>
-                            <div class="member-info">
-                            <h4>R$ 570.00</h4>
-                            <h4 style="font-size: 11px">
-                                PARTAMENTO PARA LOCACAO EM PRESIDENTE PRUDENTE/SP PRUDENTE
-                            </h4>
-                                <div class="social">
-                                    <a><i class="fa fa-bed" aria-hidden="true"></i> 3</a>           |
-                                    <a title="Dormitórios"><i class="fa fa-bed" aria-hidden="true"></i> 3</a>   |
-                                    <a title="Banheiros"<i class="fa fa-shower" aria-hidden="true"></i> 2</a>   |
-                                    <a title="Vagas"><i class="fa fa-car" aria-hidden="true"></i> 1</a>         |
-                                    <a title="Suítes"><i class="fa fa-bath" aria-hidden="true"></i> 4</a>       |
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="swiper-pagination"></div>
             </div>

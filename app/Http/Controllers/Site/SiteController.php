@@ -15,7 +15,13 @@ class SiteController extends Controller
 {
     public function index()
     {
-        return view('site.home.index');
+        $imoveis_venda = Imovel::where('id_imob', '=', '85')->where('finalidade', '=', 'Venda')->limit(10)->get();
+        $imoveis_locacao = Imovel::where('id_imob', '=', '85')->where('finalidade', '=', 'Locacao')->inRandomOrder()->limit(10)->get();
+
+        $a_destaque_locacao = $this->getRetorno($imoveis_locacao);
+        $a_destaque_venda   = $this->getRetorno($imoveis_venda);
+
+        return view('site.home.index', compact('a_destaque_locacao', 'a_destaque_venda'));
     }
 
     public function empresa()
@@ -28,9 +34,143 @@ class SiteController extends Controller
         return view('site.contato.index');
     }
 
-    public function venda()
+    public function venda(Request $request)
     {
-        return view('site.venda.index');
+        if(isset($request['order'])){
+            switch ($request['order']) {
+                case '1':
+                    $colum   =   'vlr_oferta';
+                    $orderby = 'asc';
+                    break;
+                case '2':
+                    $colum   =   'vlr_oferta';
+                    $orderby = 'desc';
+                    break;
+                case '3':
+                    $colum   =   'cod_bem';
+                    $orderby = 'DESC';
+                    break;
+            }
+        }else{
+            $colum   =   'cod_bem';
+            $orderby = 'DESC';
+        }
+        $imovel     = Imovel::where('id_imob', '=', '85')
+                    ->where('finalidade', '=', 'Venda')
+                    ->orderBy($colum, $orderby)
+                    ->paginate(10);
+
+        $imoveis    = $this->getRetorno($imovel);
+
+        $tp_bem_venda   = DB::table('imovel')
+                        ->select('tp_bem', DB::raw('count(*) as count, tp_bem'))
+                        ->where('id_imob', '=', '85')
+                        ->where('finalidade', '=', 'Venda')
+                        ->groupBy('tp_bem')
+                        ->get();
+
+        $tp_bem_locacao  = DB::table('imovel')
+                        ->select('tp_bem', DB::raw('count(*) as count, tp_bem'))
+                        ->where('id_imob', '=', '85')
+                        ->where('finalidade', '=', 'Locacao')
+                        ->groupBy('tp_bem')
+                        ->get();
+
+        return view('site.venda.index', compact('imovel', 'imoveis', 'tp_bem_venda', 'tp_bem_locacao'));
+    }
+
+    public function locacao(Request $request)
+    {
+        if(isset($request['order'])){
+            switch ($request['order']) {
+                case '1':
+                    $colum   =   'vlr_oferta';
+                    $orderby = 'asc';
+                    break;
+                case '2':
+                    $colum   =   'vlr_oferta';
+                    $orderby = 'desc';
+                    break;
+                case '3':
+                    $colum   =   'cod_bem';
+                    $orderby = 'DESC';
+                    break;
+            }
+        }else{
+            $colum   =   'cod_bem';
+            $orderby = 'DESC';
+        }
+        $imovel = Imovel::where('id_imob', '=', '85')
+                    ->where('finalidade', '=', 'Locacao')
+                    ->orderBy($colum, $orderby)
+                    ->paginate(10);
+
+        $imoveis = $this->getRetorno($imovel);
+
+        $tp_bem_venda   = DB::table('imovel')
+                        ->select('tp_bem', DB::raw('count(*) as count, tp_bem'))
+                        ->where('id_imob', '=', '85')
+                        ->where('finalidade', '=', 'Venda')
+                        ->groupBy('tp_bem')
+                        ->get();
+
+        $tp_bem_locacao  = DB::table('imovel')
+                        ->select('tp_bem', DB::raw('count(*) as count, tp_bem'))
+                        ->where('id_imob', '=', '85')
+                        ->where('finalidade', '=', 'Locacao')
+                        ->groupBy('tp_bem')
+                        ->get();
+
+        return view('site.locacao.index', compact('imovel', 'imoveis', 'tp_bem_venda', 'tp_bem_locacao'));
+    }
+
+    public function busca_rapida(Request $request)
+    {
+        $busca = $request->all();
+
+        if(isset($request['order'])){
+            switch ($request['order']) {
+                case '1':
+                    $colum   =   'vlr_oferta';
+                    $orderby = 'asc';
+                    break;
+                case '2':
+                    $colum   =   'vlr_oferta';
+                    $orderby = 'desc';
+                    break;
+                case '3':
+                    $colum   =   'cod_bem';
+                    $orderby = 'DESC';
+                    break;
+            }
+        }else{
+            $colum   =   'cod_bem';
+            $orderby = 'DESC';
+        }
+
+        $imovel = Imovel::where('id_imob', '=', '85')
+                    ->where('finalidade', '=', $busca['finalidade'])
+                    ->where('tp_bem', '=', $busca['tipo'])
+                    ->orderBy($colum, $orderby)
+                    ->paginate(10);
+
+        $imoveis = $this->getRetorno($imovel);
+
+        $tp_bem_venda   = DB::table('imovel')
+                        ->select('tp_bem', DB::raw('count(*) as count, tp_bem'))
+                        ->where('id_imob', '=', '85')
+                        ->where('finalidade', '=', 'Venda')
+                        ->groupBy('tp_bem')
+                        ->get();
+
+        $tp_bem_locacao  = DB::table('imovel')
+                        ->select('tp_bem', DB::raw('count(*) as count, tp_bem'))
+                        ->where('id_imob', '=', '85')
+                        ->where('finalidade', '=', 'Locacao')
+                        ->groupBy('tp_bem')
+                        ->get();
+
+        return view('site.busca.busca_rapida', compact('imovel', 'imoveis', 'tp_bem_venda', 'tp_bem_locacao', 'busca'));
     }
 
     public function favoritos(Request $request)
@@ -536,6 +676,7 @@ class SiteController extends Controller
         for($nIdx=0; $nIdx < count($aArrayArq); $nIdx++) {
             $aArrayArq[$nIdx] = str_replace($aPath, "", $aArrayArq[$nIdx]);
         }
+
         return $aArrayArq;
 
     }
