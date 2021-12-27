@@ -697,6 +697,7 @@ class SiteController extends Controller
     private function getImagemPatch($id_bem)
     {
         //$aPath = '/home/jmimobiliaria/novo.jmimobiliariaivp.com.br/public/storage/img/';
+        ///home/sambura/public_html/img/im01-000039050.jpg
         $aPath = '/home/sambura/public_html/img/';
         $aNome = sprintf("????-%09d.???", $id_bem);
         $aArrayArq = glob($aPath . $aNome);
@@ -705,7 +706,7 @@ class SiteController extends Controller
        	$i=1;
 
             foreach($aArrayArq as $img) {
-                $str = substr($img, 46);
+                $str = substr($img, 29);
                 $str_c = substr($str, 0, 4);
 
                 if($str_c == "imgr"){
@@ -718,7 +719,7 @@ class SiteController extends Controller
 
             }
 
-            dd($aArrayArq);
+            dd($aNewArray);
 
             ksort($aNewArray);
             $url = 'https://www.encontraimoveis.com.br/img/';
