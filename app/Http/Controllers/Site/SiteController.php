@@ -481,8 +481,6 @@ class SiteController extends Controller
         $aBenf = array_filter($aBenf);
         $imovel['benfeitorias'] = $aBenf;
 
-        dd($imovel);
-
         return view('site.imovel.index', compact('imovel'));
     }
 
@@ -706,7 +704,7 @@ class SiteController extends Controller
        	$i=1;
 
             foreach($aArrayArq as $img) {
-                $str = substr($img, 29);
+                $str = substr($img, 30);
                 $str_c = substr($str, 0, 4);
 
                 if($str_c == "imgr"){
@@ -718,8 +716,6 @@ class SiteController extends Controller
                 }
 
             }
-
-            dd($aNewArray);
 
             ksort($aNewArray);
             $url = 'https://www.encontraimoveis.com.br/img/';
