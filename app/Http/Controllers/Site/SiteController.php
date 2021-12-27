@@ -481,6 +481,8 @@ class SiteController extends Controller
         $aBenf = array_filter($aBenf);
         $imovel['benfeitorias'] = $aBenf;
 
+        dd($imovel);
+
         return view('site.imovel.index', compact('imovel'));
     }
 
