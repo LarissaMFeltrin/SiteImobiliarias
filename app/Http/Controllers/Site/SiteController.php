@@ -198,7 +198,6 @@ class SiteController extends Controller
                     ->get();
 
         return view('site.busca.busca_rapida', compact('imovel', 'imoveis', 'tp_bem_venda', 'tp_bem_locacao', 'busca'));
-
     }
 
     public function favoritos(Request $request)
@@ -413,24 +412,39 @@ class SiteController extends Controller
         $imv = Imovel::find($id);
 
         $img_name = 'imgr-'.sprintf("%09d", $imv->cod_bem).'.jpg';
-        $url_img  = 'http://www.encontraimoveis.com.br/img/' . $img_name;
+        $url_img  = 'https://www.encontraimoveis.com.br/img/' . $img_name;
 
         $imovel =  [
-            'tipo'          => 'VENDA',
+            'tipo'          => (Util::getStringUTF8($imv->finalidade) == 'Locacao' ? 'LOCAÇÃO' : 'VENDA'),
             'cod_bem'       => $imv->cod_bem,
             'referencia'    => Util::formata($imv->id ,'ref'),
-            'cidade'        => Util::getStringUf8($imv->cidade) . '/' . $imv->uf,
-            'endereco'      => Util::getStringUf8($imv->endereco_1),
-            'complemento'   => Util::getStringUf8($imv->complemento),
-            'cep'           => Util::getStringUf8($imv->cep),
-            'bairro'        => Util::getStringUf8($imv->bairro),
-            'img'           => (Util::url_exists($url_img) ? $url_img : asset('images/imovel-sem-foto3.jpg')),
-            'tp_bem'        => Util::getStringUf8($imv->tp_bem),
-            'finalidade'    => Util::getStringUf8($imv->finalidade),
-            'aplicacao'     => Util::getStringUf8($imv->aplicacao),
-            'estrutura'     => Util::getStringUf8($imv->estrutura),
-            'estado'        => Util::getStringUf8($imv->estado),
+            'cidade'        => Util::getStringUTF8($imv->cidade) . '/' . $imv->uf,
+            'endereco'      => Util::getStringUTF8($imv->endereco_1),
+            'complemento'   => Util::getStringUTF8($imv->endereco_2),
+            'cep'           => Util::getStringUTF8($imv->cep),
+            'bairro'        => Util::getStringUTF8($imv->bairro),
+            'proximidade1'  => Util::getStringUTF8($imv->proximidade1),
+            'proximidade2'  => Util::getStringUTF8($imv->proximidade2),
+            'proximidade3'  => Util::getStringUTF8($imv->proximidade3),
+            'proximidade4'  => Util::getStringUTF8($imv->proximidade4),
+            'proximidade5'  => Util::getStringUTF8($imv->proximidade5),
+            'img'           => $this->getImagemPrincipal($imv->cod_bem),
+            'img_pach'      => $this->getImagemPatch($imv->cod_bem),
+            'tp_bem'        => Util::getStringUTF8($imv->tp_bem),
+            'finalidade'    => Util::getStringUTF8($imv->finalidade),
+            'aplicacao'     => (Util::getStringUTF8($imv->aplicacao) == 'Misto' ? 'Residencial ou Comercial' : Util::getStringUTF8($imv->aplicacao)),
+            'estrutura'     => Util::getStringUTF8($imv->estrutura),
+            'estado'        => Util::getStringUTF8($imv->estado),
             'valor'         => 'R$ ' . number_format($imv->vlr_oferta, 0, ',', '.'),
+            'vlr_locacao'           => 'R$ ' . number_format($imv->vlr_locacao, 0, ',', '.'),
+            'vlr_rentabilidade'     => 'R$ ' . number_format($imv->vlr_rentabilidade, 0, ',', '.'),
+            'vlr_financiamento'     => 'R$ ' . number_format($imv->vlr_financiamento, 0, ',', '.'),
+            'vlr_sld_devedor'       => 'R$ ' . number_format($imv->vlr_sld_devedor, 0, ',', '.'),
+            'vlr_direitos'          => 'R$ ' . number_format($imv->vlr_direitos, 0, ',', '.'),
+            'vlr_poupanca'          => 'R$ ' . number_format($imv->vlr_poupanca, 0, ',', '.'),
+            'vlr_parcela'           => 'R$ ' . number_format($imv->vlr_parcela, 0, ',', '.'),
+            'vlr_iptu'              => 'R$ ' . number_format($imv->vlr_iptu, 0, ',', '.'),
+            'vlr_condominio'        => 'R$ ' . number_format($imv->vlr_condominio, 0, ',', '.'),
             'area_total'    => ($imv->area_total > 0 ? number_format($imv->area_total, 2, ',', '.') . ' m<sup>2</sup>' : null),
             'area_util'     => ($imv->area_util > 0 ? number_format($imv->area_util, 2, ',', '.') . ' m<sup>2</sup>' : null),
             'qtde_quartos'  => $imv->qtde_quartos,
@@ -440,18 +454,23 @@ class SiteController extends Controller
             'qtde_banheiro' => $imv->qtde_banheiros,
             'qtde_garagens' => $imv->qtde_garagens,
             'qtde_aservico' => $imv->qtde_area_servico,
-            'anuncio'       => Util::getStringUf8($imv->anuncio),
-            'estrutura'     => Util::getStringUf8($imv->estrutura),
+            'anuncio'       => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->anuncio)),
+            'observacao1'   => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->observacao1)),
+            'observacao2'   => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->observacao2)),
+            'observacao3'   => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->observacao3)),
+            'observacao4'   => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->observacao4)),
+            'estrutura'     => Util::getStringUTF8($imv->estrutura),
             'google_maps'   => Util::getGoogleMaps($imv->endereco_1, $imv->bairro, $imv->cidade . '-' . $imv->uf),
-            'url_amigavel'  => Util::getStringUf8($imv->finalidade) .
-                                "+" . Util::getStringUf8($imv->tp_bem) .
-                                "+" . Util::getStringUf8($imv->bairro)  .
-                                "+" . Util::getStringUf8($imv->cidade) . '-' . $imv->uf,
+            'url_amigavel'  => Util::getStringUTF8($imv->finalidade) .
+                                "+" . Util::getStringUTF8($imv->tp_bem) .
+                                "+" . Util::getStringUTF8($imv->bairro)  .
+                                "+" . Util::getStringUTF8($imv->cidade) . '-' . $imv->uf,
         ];
+
 
         $imovel['whatsapp'] = $this->getUrlWhatsApp($imovel);
 
-        $string_benf = Util::getStringUf8($imv->benfeitorias);
+        $string_benf = Util::getStringUTF8($imv->benfeitorias);
         $aBenf = $this->trataBenfeitoria($string_benf);
         $aBenf = explode(',', $aBenf);
 
@@ -630,73 +649,87 @@ class SiteController extends Controller
         }
     }
 
-    private function getPathRealImagens()
+    private function getImagemPrincipal($id_bem)
     {
-        return asset('img/');
-    }
+        $aPath = '/home/nossolarimobilia/public_html/public/img/';
+        //$aPath = '/opt/www/nossolar/public/img/';
+            $aNome = sprintf("????-%09d.???", $id_bem);
+            $aArrayArq = glob($aPath . $aNome);
 
-    public function getArrayImagensExiste()
-    {
-	    $aPath = self::getPathRealImagens();
-
-        $aNome = sprintf("????-%09d.???", $this->cod_bem);
-        $aArrayArq = glob($aPath . $aNome);
-
-        //return glob($aPath . $aNome);
-        $aArrayRtn = [];
-
-        $aArrayPrefixos = [
+            $aArrayPrefixos = [
             'imgr', 'im01', 'impl', 'im02', 'im03', 'im04', 'im05',
             'im06', 'im07', 'im08', 'im09', 'im10',
-        ];
+            ];
 
-        foreach($aArrayPrefixos as $aPref) {
-            if(strlen(trim($aPref)) <= 0) {
-                continue;
-            }
-            for($nIdx=0; $nIdx < count($aArrayArq); $nIdx++) {
-                if(strlen(trim($aArrayArq[$nIdx])) > 0) {
-                    $aArrayArq[$nIdx] = str_replace($aPath, "", $aArrayArq[$nIdx]);
-                    if(strstr($aArrayArq[$nIdx], $aPref) ) {
-                        // imagem principal
-                        $aArrayRtn[] = $aArrayArq[$nIdx];
-                        $aArrayArq[$nIdx] = "";
-                        break;
+            foreach($aArrayPrefixos as $aPref) {
+                if(strlen(trim($aPref)) <= 0) {
+                    continue;
+                }
+                for($nIdx=0; $nIdx < count($aArrayArq); $nIdx++) {
+                    if(strlen(trim($aArrayArq[$nIdx])) > 0) {
+                        $aArrayArq[$nIdx] = str_replace($aPath, "", $aArrayArq[$nIdx]);
+                        if(strstr($aArrayArq[$nIdx], $aPref) ) {
+                            // imagem principal
+                            $aArrayRtn[] = $aArrayArq[$nIdx];
+                            $aArrayArq[$nIdx] = "";
+                            break;
+                        }
                     }
                 }
             }
-        }
 
-        sort($aArrayArq);
-        // complementa array de retorno com imagens que sobraram
-        for($nIdx=0; $nIdx < count($aArrayArq); $nIdx++) {
-            if(strlen(trim($aArrayArq[$nIdx])) > 0) {
-                $aArrayRtn[] = $aArrayArq[$nIdx];
+            if(isset($aArrayRtn)){
+                $imagem_0 = $aArrayRtn[0];
+                $imagem_1 = array_filter($aArrayArq);
+                $url = 'https://www.encontraimoveis.com.br/img/';
+                $url_img = $url . $imagem_0;
+                //$url_img  = (Storage::disk('public')->exists('img/' . $imagem_0) ? $url . $imagem_0 : asset('images/logo.png'));
+            }else{
+                $url_img = asset('images/logo.png');
             }
-        }
 
-        return $aArrayRtn;
+            return $url_img;
 
+    }
 
-        // procura pela imagem principal
-        for($nIdx=0; $nIdx < count($aArrayArq); $nIdx++) {
-            if(strstr($aArrayArq[$nIdx], "imgr") ) {
-                // branco proposital
+    private function getImagemPatch($id_bem)
+    {
+            //$aPath = '/home/jmimobiliaria/novo.jmimobiliariaivp.com.br/public/storage/img/';
+            $aPath = '/home/nossolarimobilia/public_html/public/img/';
+            $aNome = sprintf("????-%09d.???", $id_bem);
+            $aArrayArq = glob($aPath . $aNome);
+
+       	$aNewArray = [];
+       	$i=1;
+
+            foreach($aArrayArq as $img) {
+                $str = substr($img, 46);
+                $str_c = substr($str, 0, 4);
+
+                if($str_c == "imgr"){
+                    $aNewArray[0] = $str;
+                    $i++;
+                }else{
+                    $aNewArray[$i] = $str;
+                    $i++;
+                }
+
             }
-            else {
-                $aArrayRtn[] = $aArrayArq[$nIdx];
+
+
+            ksort($aNewArray);
+            $url = 'https://www.encontraimoveis.com.br/img/';
+
+            foreach($aNewArray as $kay => $img){
+                $imagem_1[$kay] = $url . $img;
+                //$imagem_1[$kay] = (Storage::disk('public')->exists('img/' . $img) ? $url . $img : asset('images/imovel-sem-foto3.jpg'));
             }
-        }
 
-        return $aArrayRtn;
+            if(!isset($imagem_1)){
+                $imagem_1 = '';
+            }
 
-
-        // limpa o array ...
-        for($nIdx=0; $nIdx < count($aArrayArq); $nIdx++) {
-            $aArrayArq[$nIdx] = str_replace($aPath, "", $aArrayArq[$nIdx]);
-        }
-
-        return $aArrayArq;
+            return $imagem_1;
 
     }
 }
