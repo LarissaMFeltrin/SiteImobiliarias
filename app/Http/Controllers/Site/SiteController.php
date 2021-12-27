@@ -696,10 +696,10 @@ class SiteController extends Controller
 
     private function getImagemPatch($id_bem)
     {
-            //$aPath = '/home/jmimobiliaria/novo.jmimobiliariaivp.com.br/public/storage/img/';
-            $aPath = '/home/sambura/public_html/img/';
-            $aNome = sprintf("????-%09d.???", $id_bem);
-            $aArrayArq = glob($aPath . $aNome);
+        //$aPath = '/home/jmimobiliaria/novo.jmimobiliariaivp.com.br/public/storage/img/';
+        $aPath = '/home/sambura/public_html/img/';
+        $aNome = sprintf("????-%09d.???", $id_bem);
+        $aArrayArq = glob($aPath . $aNome);
 
        	$aNewArray = [];
        	$i=1;
@@ -731,6 +731,7 @@ class SiteController extends Controller
                 $imagem_1 = '';
             }
 
+            dd($imagem_1);
             return $imagem_1;
 
     }
