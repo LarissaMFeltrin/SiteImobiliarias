@@ -718,12 +718,12 @@ class SiteController extends Controller
 
             }
 
-
             ksort($aNewArray);
             $url = 'https://www.encontraimoveis.com.br/img/';
 
             foreach($aNewArray as $kay => $img){
                 $imagem_1[$kay] = $url . $img;
+                print_r($imagem_1[$kay]);
                 //$imagem_1[$kay] = (Storage::disk('public')->exists('img/' . $img) ? $url . $img : asset('images/imovel-sem-foto3.jpg'));
             }
 
