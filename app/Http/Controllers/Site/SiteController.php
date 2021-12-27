@@ -490,39 +490,60 @@ class SiteController extends Controller
 
         foreach ($aRetorno as $imv) {
 
-            $img_name = 'imgr-'.sprintf("%09d", $imv->cod_bem).'.jpg';
-            $url_img  = asset('img/'.$img_name);
-            $url_img  = (Storage::disk('public')->exists('img/' . $img_name) ? $url_img : asset('images/imovel-sem-foto3.jpg'));
+                //USAR LOCAL
+                //$url_img  = 'https://www.encontraimoveis.com.br/img/' . $img_name;
 
-            //USAR LOCALpublic_path(url_img)
-            //$url_img  = 'http://www.encontraimoveis.com.br/img/' . $img_name;
-
-            $imoveis[$i] =  [
-                'tipo'          => 'VENDA',
-                'cod_bem'       => $imv->cod_bem,
-                'referencia'    => Util::formata($imv->id ,'ref'),
-                'cidade'        => Util::getStringUf8($imv->cidade) . '/' . $imv->uf,
-                'bairro'        => Util::getStringUf8($imv->bairro),
-                'img'           => (Util::url_exists($url_img) ? $url_img : asset('images/imovel-sem-foto3.jpg')),
-                'tp_bem'        => Util::getStringUf8($imv->tp_bem),
-                'finalidade'    => Util::getStringUf8($imv->finalidade),
-                'aplicacao'     => Util::getStringUf8($imv->aplicacao),
-                'estrutura'     => Util::getStringUf8($imv->estrutura),
-                'estado'        => Util::getStringUf8($imv->estado),
-                'valor'         => 'R$ ' . number_format($imv->vlr_oferta, 0, ',', '.'),
-                'area_total'    => ($imv->area_total > 0 ? number_format($imv->area_total, 2, ',', '.') . ' m<sup>2</sup>' : null),
-                'area_util'     => ($imv->area_util > 0 ? number_format($imv->area_util, 2, ',', '.') . ' m<sup>2</sup>' : null),
-                'qtde_quartos'  => $imv->qtde_quartos,
-                'qtde_suites'   => $imv->qtde_suites,
-                'qtde_salas'    => $imv->qtde_salas,
-                'qtde_cozinha'  => $imv->qtde_cozinhas,
-                'qtde_banheiro' => $imv->qtde_banheiros,
-                'qtde_garagens' => $imv->qtde_garagens,
-                'qtde_aservico' => $imv->qtde_area_servico,
-                'url_amigavel'  => Util::getStringUf8($imv->finalidade) .
-                                    "+" . Util::getStringUf8($imv->tp_bem) .
-                                    "+" . Util::getStringUf8($imv->bairro)  .
-                                    "+" . Util::getStringUf8($imv->cidade) . '-' . $imv->uf,
+                $imoveis[$i] =  [
+                    'tipo'          => (Util::getStringUTF8($imv->finalidade) == 'Locacao' ? 'LOCAÇÃO' : 'VENDA'),
+                    'cod_bem'       => $imv->cod_bem,
+                    'referencia'    => Util::formata($imv->id ,'ref'),
+                    'cidade'        => Util::getStringUTF8($imv->cidade) . '/' . $imv->uf,
+                    'endereco'      => Util::getStringUTF8($imv->endereco_1),
+                    'complemento'   => Util::getStringUTF8($imv->endereco_2),
+                    'cep'           => Util::getStringUTF8($imv->cep),
+                    'bairro'        => Util::getStringUTF8($imv->bairro),
+                    'proximidade1'  => Util::getStringUTF8($imv->proximidade1),
+                    'proximidade2'  => Util::getStringUTF8($imv->proximidade2),
+                    'proximidade3'  => Util::getStringUTF8($imv->proximidade3),
+                    'proximidade4'  => Util::getStringUTF8($imv->proximidade4),
+                    'proximidade5'  => Util::getStringUTF8($imv->proximidade5),
+                    'img'           => $this->getImagemPrincipal($imv->cod_bem),
+                    'img_pach'      => $this->getImagemPatch($imv->cod_bem),
+                    'tp_bem'        => Util::getStringUTF8($imv->tp_bem),
+                    'finalidade'    => (Util::getStringUTF8($imv->finalidade) == 'Locacao' ? 'Locação' : 'Venda'),
+                    'aplicacao'     => (Util::getStringUTF8($imv->aplicacao) == 'Misto' ? 'Residencial ou Comercial' : Util::getStringUTF8($imv->aplicacao)),
+                    'estrutura'     => Util::getStringUTF8($imv->estrutura),
+                    'estado'        => Util::getStringUTF8($imv->estado),
+                    'valor'         => 'R$ ' . number_format($imv->vlr_oferta, 0, ',', '.'),
+                    'vlr_locacao'           => 'R$ ' . number_format($imv->vlr_locacao, 0, ',', '.'),
+                    'vlr_rentabilidade'     => 'R$ ' . number_format($imv->vlr_rentabilidade, 0, ',', '.'),
+                    'vlr_financiamento'     => 'R$ ' . number_format($imv->vlr_financiamento, 0, ',', '.'),
+                    'vlr_sld_devedor'       => 'R$ ' . number_format($imv->vlr_sld_devedor, 0, ',', '.'),
+                    'vlr_direitos'          => 'R$ ' . number_format($imv->vlr_direitos, 0, ',', '.'),
+                    'vlr_poupanca'          => 'R$ ' . number_format($imv->vlr_poupanca, 0, ',', '.'),
+                    'vlr_parcela'           => 'R$ ' . number_format($imv->vlr_parcela, 0, ',', '.'),
+                    'vlr_iptu'              => 'R$ ' . number_format($imv->vlr_iptu, 0, ',', '.'),
+                    'vlr_condominio'        => 'R$ ' . number_format($imv->vlr_condominio, 0, ',', '.'),
+                    'area_total'    => ($imv->area_total > 0 ? number_format($imv->area_total, 2, ',', '.') . ' m<sup>2</sup>' : null),
+                    'area_util'     => ($imv->area_util > 0 ? number_format($imv->area_util, 2, ',', '.') . ' m<sup>2</sup>' : null),
+                    'qtde_quartos'  => $imv->qtde_quartos,
+                    'qtde_suites'   => $imv->qtde_suites,
+                    'qtde_salas'    => $imv->qtde_salas,
+                    'qtde_cozinha'  => $imv->qtde_cozinhas,
+                    'qtde_banheiro' => $imv->qtde_banheiros,
+                    'qtde_garagens' => $imv->qtde_garagens,
+                    'qtde_aservico' => $imv->qtde_area_servico,
+                    'anuncio'       => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->anuncio)),
+                    'observacao1'   => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->observacao1)),
+                    'observacao2'   => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->observacao2)),
+                    'observacao3'   => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->observacao3)),
+                    'observacao4'   => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->observacao4)),
+                    'estrutura'     => Util::getStringUTF8($imv->estrutura),
+                    'google_maps'   => Util::getGoogleMaps($imv->endereco_1, $imv->bairro, $imv->cidade . '-' . $imv->uf),
+                    'url_amigavel'  => Util::getStringUTF8($imv->finalidade) .
+                                        "+" . Util::getStringUTF8($imv->tp_bem) .
+                                        "+" . Util::getStringUTF8($imv->bairro)  .
+                                        "+" . Util::getStringUTF8($imv->cidade) . '-' . $imv->uf,
             ];
 
             $imoveis[$i]['whatsapp'] = $this->getUrlWhatsApp($imoveis[$i]);
