@@ -160,11 +160,11 @@
 }
 .imgContainer {
   overflow: hidden;
-  width: 370px;
+  width: 360px;
   height: 278px;
 }
 .imgContainer img {
-  width: 378px;
+  width: 360px;
   height: 270px;
 }
 </style>
