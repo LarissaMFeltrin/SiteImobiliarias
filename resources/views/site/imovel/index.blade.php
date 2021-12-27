@@ -46,9 +46,11 @@
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <ul id="imageGallery">
-                        <li data-thumb="{{ asset('images/imoveis/imgr-000023868.jpg') }}" data-src="{{ asset('images/imoveis/imgr-000023868.jpg') }}">
-                          <img class="img-reponsive" src="{{ asset('images/imoveis/imgr-000023868.jpg') }}" />
-                        </li>
+                        @foreach ($imovel['img_pach'] as $img)
+                            <li data-thumb="{{ $img }}" data-src="{{ $img }}">
+                                <img class="img-reponsive" src="{{ $img }}" />
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
                 <div class="col-md-6 col-sm-12">
