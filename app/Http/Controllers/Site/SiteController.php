@@ -173,6 +173,34 @@ class SiteController extends Controller
         return view('site.busca.busca_rapida', compact('imovel', 'imoveis', 'tp_bem_venda', 'tp_bem_locacao', 'busca'));
     }
 
+    public function busca_avancada(Request $request)
+    {
+        $busca = $request->all();
+        $imovel = Imovel::where('id_imob', '=', '85')
+                    ->where('finalidade', '=', $busca['finalidade'])
+                    ->where('tp_bem', '=', $busca['tipo'])
+                    ->paginate(10);
+
+        $imoveis = $this->getRetorno($imovel);
+
+        $tp_bem_venda   = DB::table('imovel')
+                    ->select('tp_bem', DB::raw('count(*) as count, tp_bem'))
+                    ->where('id_imob', '=', '85')
+                    ->where('finalidade', '=', 'Venda')
+                    ->groupBy('tp_bem')
+                    ->get();
+
+        $tp_bem_locacao  = DB::table('imovel')
+                    ->select('tp_bem', DB::raw('count(*) as count, tp_bem'))
+                    ->where('id_imob', '=', '85')
+                    ->where('finalidade', '=', 'Locacao')
+                    ->groupBy('tp_bem')
+                    ->get();
+
+        return view('site.busca.busca_rapida', compact('imovel', 'imoveis', 'tp_bem_venda', 'tp_bem_locacao', 'busca'));
+
+    }
+
     public function favoritos(Request $request)
     {
         if(!isset($_COOKIE['favoritos'])){
@@ -428,22 +456,13 @@ class SiteController extends Controller
         $aBenf = explode(',', $aBenf);
 
         foreach ($aBenf as $kay=> $benf) {
-            $aBenf[$kay] = \ltrim($benf);
+            $aBenf[$kay] = Util::getStringUTF8(ltrim($benf));
         }
 
         $aBenf = array_filter($aBenf);
         $imovel['benfeitorias'] = $aBenf;
 
-        if($imv->finalidade == 'Locacao'){
-            $sugestao = Imovel::where('id_imob', '=', '186')->where('finalidade', '=', 'Locacao')->inRandomOrder()->limit(10)->get();
-        }
-        else{
-            $sugestao = Imovel::where('id_imob', '=', '186')->where('finalidade', '=', 'Venda')->inRandomOrder()->limit(10)->get();
-        }
-
-        $a_sugestao = $this->getRetorno($sugestao);
-
-        return view('site.imovel.index', compact('imovel', 'a_sugestao'));
+        return view('site.imovel.index', compact('imovel'));
     }
 
     private function getRetorno($aRetorno)

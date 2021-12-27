@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
     @include('site.layout.parts.description')
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>Sambura Imóveis</title>
     <!-- ======= styles ======= -->
     @include('site.layout.parts.styles')

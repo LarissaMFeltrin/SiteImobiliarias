@@ -748,6 +748,12 @@ class Util
         return mb_convert_case(Util::aTrataCaracEstran($aTexto), MB_CASE_TITLE, "UTF-8");
     }
 
+    public static function getStringUTF8($aTexto)
+    {
+        $aTexto = Util::aTrataCaracEstran($aTexto);
+        return iconv(mb_detect_encoding($aTexto, mb_detect_order(), true), "UTF-8", $aTexto);
+    }
+
     public static function aTrataCaracEstran($str, $reverso = false)
     {
         $caracEstran = array('Ã£', 'Ã¢', 'Ã¡', 'Ã©', 'Ãµ', 'Ã³', 'Ã´', 'Ãº', 'Ã§', 'Â°', 'Âº', 'Ã­', 'Ã', 'Ãƒ', 'Ãª', 'Ã‰', 'ÃŠ', 'Ãš', 'Ã“', '²Í ',  'Í ');

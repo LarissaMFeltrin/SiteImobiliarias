@@ -1,0 +1,204 @@
+@extends('site.layout.app')
+
+@section('main')
+<div class="container" style="margin-top: 100px;">
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="roe">
+                <h4>Ref.:  {{ $imovel['tp_bem'] . ' - ' . $imovel['cidade'] }}</h4>
+            </div>
+        </div>
+        <hr>
+        <div class="container">
+            <div class="row bg-light border p-3 mb-3 d-flex align-items-center">
+                <div class="col-lg-2 col-6 text-center">
+                    <i class="fas fa-bed fa-fw fa-lg"></i> <br>
+                    {{ $imovel['qtde_quartos'] }}
+                    Quartos
+                </div>
+                <div class="col-lg-2 col-6 text-center">
+                    <i class="fas fa-shower fa-fw fa-lg"></i> <br>
+                    {{ $imovel['qtde_banheiro'] }}
+                    Banheiros
+                </div>
+                <div class="col-lg-2 col-6 text-center">
+                    <i class="fas fa-bath fa-fw fa-lg"></i> <br>
+                    {{ $imovel['qtde_suites'] }}
+                    Suites
+                </div>
+                <div class="col-lg-2 col-6 text-center">
+                    <i class="fas fa-car fa-fw fa-lg"></i> <br>
+                    {{ $imovel['qtde_garagens'] }}
+                    Vagas
+                </div>
+                <div class="col-lg-4 mt-3 mt-lg-0">
+                    <div class="row d-flex justify-content-center text-right">
+                        <div class="col-3 p-0 text-center">
+                            <a href="{{ $imovel['whatsapp'] }}" target="blank" class="btn btn-outline-secondary btn-lg">
+                                <i class="fab fa-whatsapp fa-fw"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <ul id="imageGallery">
+                        <li data-thumb="{{ asset('images/imoveis/imgr-000023868.jpg') }}" data-src="{{ asset('images/imoveis/imgr-000023868.jpg') }}">
+                          <img class="img-reponsive" src="{{ asset('images/imoveis/imgr-000023868.jpg') }}" />
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <h4>Informações</h4>
+                    <hr>
+                    <span><b>REF.:</b> {{ $imovel['referencia'] }}</span>       <br>
+                    <span><b>Cidade.:</b> {{ $imovel['cidade'] }}</span>        <br>
+                    <span><b>Bairro.:</b> {{ $imovel['bairro'] }}</span>        <br>
+                    <span><b>Endereço.:</b> {{ $imovel['endereco'] }}</span>    <br>
+
+                    <br><br>
+
+                    <span><b>Tipo.:</b> {{ $imovel['tp_bem'] }}</span>          <br>
+                    <span><b>Aplicação.:</b> {{ $imovel['aplicacao'] }}</span>  <br>
+                    <span><b>Estrutura.:</b> {{ $imovel['estrutura'] }}</span>  <br>
+                    <span><b>Estado.:</b> {{ $imovel['estado'] }}</span>        <br>
+
+                    <span><b>Valor.:</b> {{ $imovel['valor'].',00' }}</span>          <br>
+
+                    <br>
+                    <span style="color: red;">Atenção: A disponibilidade e os valores dos imóveis estão sujeitos a alteração sem aviso prévio.</span>
+                </div>
+            </div>
+        </div>
+        <div class="container mt-3 p-4">
+            <div class="row bg-light border p-3 mb-5 d-flex align-items-center">
+                <div class="col-12">
+                    <p class="text-justify">
+                        {!! $imovel['anuncio'] !!}
+                    </p>
+                </div>
+            </div>
+            <div class="row mb-5">
+                <div class="col-12">
+                    <h4>Características</h4>
+                    <hr>
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-12">
+                            <b>Categoria:</b>
+                            <p>{{ $imovel['tp_bem'] }}</p>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <b>Tipo:</b>
+                            <p>{{ $imovel['estrutura'] }}</p>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <b>Área útil:</b>
+                            <p>{!! $imovel['area_util'] !!}</p>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <b>Área do Terreno:</b>
+                            <p>{!! $imovel['area_total'] !!}</p>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <b>Valor compra:</b>
+                            <p>{{ $imovel['valor'].',00' }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-5">
+                <div class="col-12">
+                    <h4>Itens do imóvel</h4>
+                    <hr>
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        @foreach ($imovel['benfeitorias'] as $benf)
+                            <div class="col-md-2 col-sm-12">
+                                <p>
+                                    <i class="fas fa-check-square" style="font-size: 14px;"></i>
+                                    {{ $benf }}
+                                </p>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <h4>Localização</h4>
+                    <hr>
+                </div>
+                <div class="col-12">
+                    <p>
+                        {{ $imovel['endereco'] }} <br>
+                        <span>{{ $imovel['bairro'] . ' - ' . $imovel['cidade'] }}</span>
+                    </p>
+                </div>
+                <div class="col-12 mt-2">
+                    <iframe frameborder="0" style="border:0; width: 100%; height: 500px;" src="{{ $imovel['google_maps'] }}" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+@endsection
+
+@section('scripts')
+<script src="{{ asset('assets/plugins/lightslider/js/lightslider.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.1.8/lightgallery.min.js" integrity="sha512-BQPHJVHCOVIdd6S0Vi8+7gaPHy0cZxXNEzqn1gQWeYEMQMQDolld6PGJtShlVcCHEOwve3XHBwKaarmRO/Dnjw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.rawgit.com/sachinchoolur/lightgallery.js/master/dist/js/lightgallery.js"></script>
+<script src="https://cdn.rawgit.com/sachinchoolur/lg-pager.js/master/dist/lg-pager.js"></script>
+<script src="https://cdn.rawgit.com/sachinchoolur/lg-autoplay.js/master/dist/lg-autoplay.js"></script>
+<script src="https://cdn.rawgit.com/sachinchoolur/lg-fullscreen.js/master/dist/lg-fullscreen.js"></script>
+<script src="https://cdn.rawgit.com/sachinchoolur/lg-zoom.js/master/dist/lg-zoom.js"></script>
+<script src="https://cdn.rawgit.com/sachinchoolur/lg-hash.js/master/dist/lg-hash.js"></script>
+<script src="https://cdn.rawgit.com/sachinchoolur/lg-share.js/master/dist/lg-share.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#imageGallery').lightSlider({
+            gallery:true,
+            item:1,
+            loop:true,
+            thumbItem:7,
+            slideMargin:0,
+            enableDrag: false,
+            currentPagerPosition:'left',
+            onSliderLoad: function(el) {
+                lightGallery(document.getElementById('imageGallery'));
+            }
+        });
+    });
+</script>
+@endsection
+
+@section('style')
+<link rel="stylesheet"  href="{{ asset('assets/plugins/lightslider/css/lightslider.min.css') }}"/>
+<link href="https://cdn.rawgit.com/sachinchoolur/lightgallery.js/master/dist/css/lightgallery.css" rel="stylesheet">
+<style>
+#header{
+    background-image: url("{{ asset('images/banner_00.jpg') }}");
+    background-repeat: no-repeat, repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+    background-position: 0px top;
+}
+#header a{
+    color: black;
+}
+#header #navbar i {
+    color: #121d24 !important;
+}
+.navbar .getstarted, .navbar .getstarted{
+    border-color:#c93238;
+}
+#main{
+    margin-top: 230px !important;
+}
+</style>
+@endsection

@@ -67,7 +67,9 @@
                                 <div class="col-12 mt-3">
                                     <div class="row">
                                         <div class="d-grid gap-2 text-center">
-                                            <a href="#" class="btn btn-dark"> <i class="fas fa-search fa-fw"></i> Ver detalhes do imóvel</a>
+                                            <a href="{{ route('imovel', ['descricao' => $imv['url_amigavel'], 'id' => $imv['cod_bem']]) }}" class="btn btn-dark">
+                                                <i class="fas fa-search fa-fw"></i> Ver detalhes do imóvel
+                                            </a>
                                             <a href="{{ $imv['whatsapp'] }}" target="_" class="btn btn-success"> <i class="bi bi-whatsapp"></i> Whatsapp</a>
                                         </div>
                                     </div>
