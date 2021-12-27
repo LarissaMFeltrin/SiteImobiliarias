@@ -651,7 +651,7 @@ class SiteController extends Controller
 
     private function getImagemPrincipal($id_bem)
     {
-        $aPath = '/home/nossolarimobilia/public_html/public/img/';
+        $aPath = '/home/sambura/public_html/img/';
         //$aPath = '/opt/www/nossolar/public/img/';
             $aNome = sprintf("????-%09d.???", $id_bem);
             $aArrayArq = glob($aPath . $aNome);
@@ -695,7 +695,7 @@ class SiteController extends Controller
     private function getImagemPatch($id_bem)
     {
             //$aPath = '/home/jmimobiliaria/novo.jmimobiliariaivp.com.br/public/storage/img/';
-            $aPath = '/home/nossolarimobilia/public_html/public/img/';
+            $aPath = '/home/sambura/public_html/img/';
             $aNome = sprintf("????-%09d.???", $id_bem);
             $aArrayArq = glob($aPath . $aNome);
 
