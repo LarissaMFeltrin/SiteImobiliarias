@@ -17,7 +17,7 @@
             <p>ALUGAR</p>
         </div>
         <div class="row">
-            <div class="swiper team-swiper">
+            <div class="swiper team-swiper" style="max-height: 430px;">
                 <div class="swiper-wrapper pb-3">
                     @foreach ($a_destaque_locacao as $imv)
                         <div class="swiper-slide col-lg-4 col-md-6">
@@ -57,7 +57,7 @@
             <p>COMPRAR</p>
         </div>
         <div class="row">
-            <div class="swiper team-swiper">
+            <div class="swiper team-swiper" style="max-height: 430px;">
                 <div class="swiper-wrapper pb-3">
                     @foreach ($a_destaque_venda as $imv)
                         <div class="swiper-slide col-lg-4 col-md-6">
