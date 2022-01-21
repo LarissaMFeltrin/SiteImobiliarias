@@ -23,7 +23,9 @@
                         <div class="swiper-slide col-lg-4 col-md-6">
                             <div class="member">
                                 <div class="pic">
-                                    <img src="{{ $imv['img'] }}" class="img-fluid" alt="">
+                                    <a href="{{ route('imovel', ['descricao' => $imv['url_amigavel'], 'id' => $imv['cod_bem']]) }}">
+                                        <img src="{{ $imv['img'] }}" class="img-fluid" alt="">
+                                    </a>
                                 </div>
                                 <div class="member-info">
                                     <h4>{{ $imv['valor'] }}</h4>
@@ -63,7 +65,9 @@
                         <div class="swiper-slide col-lg-4 col-md-6">
                             <div class="member">
                                 <div class="pic">
-                                    <img src="{{ $imv['img'] }}" class="img-fluid" alt="">
+                                    <a href="{{ route('imovel', ['descricao' => $imv['url_amigavel'], 'id' => $imv['cod_bem']]) }}">
+                                        <img src="{{ $imv['img'] }}" class="img-fluid" alt="">
+                                    </a>
                                 </div>
                                 <div class="member-info">
                                     <h4>{{ $imv['valor'] }}</h4>
