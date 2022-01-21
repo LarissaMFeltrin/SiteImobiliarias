@@ -205,5 +205,8 @@
 #imageGallery{
     max-height: 430px !important;
 }
+.lSPager{
+    max-height: 65px !important;
+}
 </style>
 @endsection
