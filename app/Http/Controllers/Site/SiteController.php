@@ -176,10 +176,17 @@ class SiteController extends Controller
     public function busca_avancada(Request $request)
     {
         $busca = $request->all();
-        $imovel = Imovel::where('id_imob', '=', '85')
-                    ->where('finalidade', '=', $busca['finalidade'])
-                    ->where('tp_bem', '=', $busca['tipo'])
-                    ->paginate(10);
+
+        if(isset($busca['referencia'])){
+            $imovel = Imovel::where('id_imob', '=', '85')
+            ->where('id', 'LIKE', '%' . $busca['referencia'] . '%')
+            ->paginate(10);
+        }else{
+            $imovel = Imovel::where('id_imob', '=', '85')
+            ->where('finalidade', '=', $busca['finalidade'])
+            ->where('tp_bem', '=', $busca['tipo'])
+            ->paginate(10);
+        }
 
         $imoveis = $this->getRetorno($imovel);
 
@@ -706,7 +713,7 @@ class SiteController extends Controller
                 $url_img = $url . $imagem_0;
                 //$url_img  = (Storage::disk('public')->exists('img/' . $imagem_0) ? $url . $imagem_0 : asset('images/logo.png'));
             }else{
-                $url_img = asset('images/logo.png');
+                $url_img = asset('images/imovel-sem-foto3.jpg');
             }
 
             return $url_img;
