@@ -21,3 +21,5 @@
 <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
 @yield('style')
+@yield('style2')
+@yield('style3')

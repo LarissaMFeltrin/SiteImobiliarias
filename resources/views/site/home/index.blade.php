@@ -108,7 +108,7 @@
 <!-- END ABOUT -->
 @endsection
 
-@section('style')
+@section('style2')
 <style>
 .pic {
     max-height: 320px !important;
