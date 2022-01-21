@@ -110,5 +110,8 @@
 
 @section('style')
 <style>
+.pic {
+    max-height: 320px !important;
+}
 </style>
 @endsection

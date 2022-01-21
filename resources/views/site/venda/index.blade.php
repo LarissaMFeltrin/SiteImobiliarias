@@ -156,8 +156,5 @@
 .categoria a:hover {
     color: red;
 }
-.pic {
-    max-height: 320px !important;
-}
 </style>
 @endsection
