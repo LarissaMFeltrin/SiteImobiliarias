@@ -205,7 +205,7 @@
 #imageGallery{
     max-height: 430px !important;
 }
-.lSPager .lSGallery{
+.lSPager{
     max-height: 65px !important;
 }
 </style>
