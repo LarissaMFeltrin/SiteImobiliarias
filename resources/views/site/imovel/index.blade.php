@@ -202,5 +202,8 @@
 #main{
     margin-top: 230px !important;
 }
+#imageGallery{
+    max-height: 430px !important;
+}
 </style>
 @endsection
