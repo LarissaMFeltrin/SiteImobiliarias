@@ -34,7 +34,7 @@
                 <div class="col-lg-4 mt-3 mt-lg-0">
                     <div class="row d-flex justify-content-center text-right">
                         <div class="col-3 p-0 text-center">
-                            <a href="{{ $imovel['whatsapp'] }}" target="blank" class="btn btn-outline-secondary btn-lg">
+                            <a href="{{ $imovel['whatsapp'] }}" target="blank" class="btn btn-outline-secondary btn-lg btn-whats" title="Fale com um de nossos atendentes.">
                                 <i class="fab fa-whatsapp fa-fw"></i>
                             </a>
                         </div>
@@ -46,11 +46,13 @@
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <ul id="imageGallery">
-                        @foreach ($imovel['img_pach'] as $img)
-                            <li data-thumb="{{ $img }}" data-src="{{ $img }}">
-                                <img class="img-reponsive" src="{{ $img }}" />
-                            </li>
-                        @endforeach
+                        @if ($imovel['img_pach'] != '')
+                            @foreach ($imovel['img_pach'] as $img)
+                                <li data-thumb="{{ $img }}" data-src="{{ $img }}">
+                                    <img class="img-reponsive" src="{{ $img }}" />
+                                </li>
+                            @endforeach
+                        @endif
                     </ul>
                 </div>
                 <div class="col-md-6 col-sm-12">
@@ -207,6 +209,13 @@
 }
 .lSPager{
     max-height: 65px !important;
+}
+.btn-whats {
+    color: green;
+}
+.btn-whats:hover{
+    background: green;
+    color: #fff;
 }
 </style>
 @endsection
