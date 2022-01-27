@@ -18,9 +18,9 @@
             <div class="col-sm-12 col-md-9">
                 @foreach ($imoveis as $imv)
                     <div class="row mb-3" style="background-color: #f0f4f8; padding: 10px; margin-right: 10px; border: 1px solid #e8e8e8;">
-                        <div class="col-sm-12 col-md-5 text-center div_img">
+                        <div class="col-sm-12 col-md-5 text-center">
                             <a href="{{ route('imovel', ['descricao' => $imv['url_amigavel'], 'id' => $imv['cod_bem']]) }}">
-                                <img src="{{ $imv['img'] }}" class="img-fluid" alt="" style="max-height: 0.3rem;">
+                                <img src="{{ $imv['img'] }}" class="img-fluid" alt="" style="max-height: 290px;">
                             </a>
                         </div>
                         <div class="col-sm-12 col-md-7">
@@ -154,12 +154,6 @@
 }
 .categoria a:hover {
     color: red;
-}
-
-.div_img{
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 </style>
 @endsection
