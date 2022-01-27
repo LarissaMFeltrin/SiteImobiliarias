@@ -49,7 +49,7 @@
                         @if ($imovel['img_pach'] != '')
                             @foreach ($imovel['img_pach'] as $img)
                                 <li data-thumb="{{ $img }}" data-src="{{ $img }}">
-                                    <img class="img-reponsive" src="{{ $img }}" />
+                                    <img class="img-fluid" src="{{ $img }}" />
                                 </li>
                             @endforeach
                         @endif
