@@ -11,26 +11,28 @@
         <hr>
         <div class="container">
             <div class="row bg-light border p-3 mb-3 d-flex align-items-center">
-                <div class="col-lg-2 col-6 text-center">
-                    <i class="fas fa-bed fa-fw fa-lg"></i> <br>
-                    {{ $imovel['qtde_quartos'] }}
-                    Quartos
-                </div>
-                <div class="col-lg-2 col-6 text-center">
-                    <i class="fas fa-shower fa-fw fa-lg"></i> <br>
-                    {{ $imovel['qtde_banheiro'] }}
-                    Banheiros
-                </div>
-                <div class="col-lg-2 col-6 text-center">
-                    <i class="fas fa-bath fa-fw fa-lg"></i> <br>
-                    {{ $imovel['qtde_suites'] }}
-                    Suites
-                </div>
-                <div class="col-lg-2 col-6 text-center">
-                    <i class="fas fa-car fa-fw fa-lg"></i> <br>
-                    {{ $imovel['qtde_garagens'] }}
-                    Vagas
-                </div>
+                @if ($imovel['tp_bem'] != 'Terreno' || $imovel['tp_bem'] != 'Terreno Em Condominio')
+                    <div class="col-lg-2 col-6 text-center">
+                        <i class="fas fa-bed fa-fw fa-lg"></i> <br>
+                        {{ $imovel['qtde_quartos'] }}
+                        Quartos
+                    </div>
+                    <div class="col-lg-2 col-6 text-center">
+                        <i class="fas fa-shower fa-fw fa-lg"></i> <br>
+                        {{ $imovel['qtde_banheiro'] }}
+                        Banheiros
+                    </div>
+                    <div class="col-lg-2 col-6 text-center">
+                        <i class="fas fa-bath fa-fw fa-lg"></i> <br>
+                        {{ $imovel['qtde_suites'] }}
+                        Suites
+                    </div>
+                    <div class="col-lg-2 col-6 text-center">
+                        <i class="fas fa-car fa-fw fa-lg"></i> <br>
+                        {{ $imovel['qtde_garagens'] }}
+                        Vagas
+                    </div>
+                @endif
                 <div class="col-lg-4 mt-3 mt-lg-0">
                     <div class="row d-flex justify-content-center text-right">
                         <div class="col-3 p-0 text-center">
