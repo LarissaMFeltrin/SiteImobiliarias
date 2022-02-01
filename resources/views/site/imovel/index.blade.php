@@ -11,7 +11,7 @@
         <hr>
         <div class="container">
             <div class="row bg-light border p-3 mb-3 d-flex align-items-center">
-                @if ($imovel['tp_bem'] != 'Terreno' || $imovel['tp_bem'] != 'Terreno Em Condominio')
+                @if ($imovel['tp_bem'] !== 'Terreno')
                     <div class="col-lg-2 col-6 text-center">
                         <i class="fas fa-bed fa-fw fa-lg"></i> <br>
                         {{ $imovel['qtde_quartos'] }}
