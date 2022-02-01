@@ -61,13 +61,14 @@
                     <span><b>REF.:</b> {{ $imovel['referencia'] }}</span>       <br>
                     <span><b>Cidade.:</b> {{ $imovel['cidade'] }}</span>        <br>
                     <span><b>Bairro.:</b> {{ $imovel['bairro'] }}</span>        <br>
-                    <span><b>Endereço.:</b> {{ $imovel['endereco'] }}</span>    <br>
+                    @if ($imovel['finalidade'] == 'Locacao')
+                        <span><b>Endereço.:</b> {{ $imovel['endereco'] }}</span>    <br>
+                    @endif
 
                     <br><br>
 
                     <span><b>Tipo.:</b> {{ $imovel['tp_bem'] }}</span>          <br>
                     <span><b>Aplicação.:</b> {{ $imovel['aplicacao'] }}</span>  <br>
-                    <span><b>Estrutura.:</b> {{ $imovel['estrutura'] }}</span>  <br>
                     <span><b>Estado.:</b> {{ $imovel['estado'] }}</span>        <br>
 
                     <span><b>Valor.:</b> {{ $imovel['valor'].',00' }}</span>          <br>
@@ -133,21 +134,23 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <h4>Localização</h4>
-                    <hr>
+            @if ($imovel['finalidade'] == 'Locacao')
+                <div class="row">
+                    <div class="col-12">
+                        <h4>Localização</h4>
+                        <hr>
+                    </div>
+                    <div class="col-12">
+                        <p>
+                            {{ $imovel['endereco'] }} <br>
+                            <span>{{ $imovel['bairro'] . ' - ' . $imovel['cidade'] }}</span>
+                        </p>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <iframe frameborder="0" style="border:0; width: 100%; height: 500px;" src="{{ $imovel['google_maps'] }}" allowfullscreen></iframe>
+                    </div>
                 </div>
-                <div class="col-12">
-                    <p>
-                        {{ $imovel['endereco'] }} <br>
-                        <span>{{ $imovel['bairro'] . ' - ' . $imovel['cidade'] }}</span>
-                    </p>
-                </div>
-                <div class="col-12 mt-2">
-                    <iframe frameborder="0" style="border:0; width: 100%; height: 500px;" src="{{ $imovel['google_maps'] }}" allowfullscreen></iframe>
-                </div>
-            </div>
+            @endif
         </div>
     </section>
 </div>

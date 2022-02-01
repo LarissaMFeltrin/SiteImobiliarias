@@ -105,7 +105,7 @@
                 Hoje trabalhamos com aluguel, compra e venda de casas, terrenos, apartamentos, imóveis comerciais,
                 condomínios fechados horizontais e verticais, além de vendas em lançamentos e avaliação de imóveis.
             </p>
-            <a class="cta-btn scrollto" href="#">Conheça nossa história!</a>
+            <a class="cta-btn scrollto" href="{{ route('empresa') }}">Conheça nossa história!</a>
         </div>
     </div>
 </section>
