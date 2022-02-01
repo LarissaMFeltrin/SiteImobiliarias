@@ -33,7 +33,7 @@
                         Vagas
                     </div>
                 @endif
-                <div class="col-lg-4 mt-3 mt-lg-0">
+                <div class="@if ($imovel['tp_bem'] !== 'Terreno') col-lg-4 @else col-lg-12  @endif mt-3 mt-lg-0">
                     <div class="row d-flex justify-content-center text-right">
                         <div class="col-3 p-0 text-center">
                             <a href="{{ $imovel['whatsapp'] }}" target="blank" class="btn btn-outline-secondary btn-lg btn-whats" title="Fale com um de nossos atendentes.">
