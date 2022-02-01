@@ -35,7 +35,8 @@
                     <div class="row d-flex justify-content-center text-right">
                         <div class="col-3 p-0 text-center">
                             <a href="{{ $imovel['whatsapp'] }}" target="blank" class="btn btn-outline-secondary btn-lg btn-whats" title="Fale com um de nossos atendentes.">
-                                <i class="fab fa-whatsapp fa-fw"></i> Conversar
+                                <i class="fab fa-whatsapp fa-fw"></i>
+                                Conversar
                             </a>
                         </div>
                     </div>
@@ -213,6 +214,7 @@
 }
 .btn-whats {
     color: green;
+    font-size: 13px;
 }
 .btn-whats:hover{
     background: green;
