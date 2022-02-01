@@ -35,7 +35,7 @@
                     <div class="row d-flex justify-content-center text-right">
                         <div class="col-3 p-0 text-center">
                             <a href="{{ $imovel['whatsapp'] }}" target="blank" class="btn btn-outline-secondary btn-lg btn-whats" title="Fale com um de nossos atendentes.">
-                                <i class="fab fa-whatsapp fa-fw"></i>
+                                <i class="fab fa-whatsapp fa-fw"></i> Conversar
                             </a>
                         </div>
                     </div>
@@ -65,12 +65,10 @@
                         <span><b>Endereço.:</b> {{ $imovel['endereco'] }}</span>    <br>
                     @endif
 
-                    <br><br>
+                    <br>
 
                     <span><b>Tipo.:</b> {{ $imovel['tp_bem'] }}</span>          <br>
                     <span><b>Aplicação.:</b> {{ $imovel['aplicacao'] }}</span>  <br>
-                    <span><b>Estado.:</b> {{ $imovel['estado'] }}</span>        <br>
-
                     <span><b>Valor.:</b> {{ $imovel['valor'].',00' }}</span>          <br>
 
                     <br>
