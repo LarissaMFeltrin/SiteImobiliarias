@@ -51,8 +51,8 @@
                     <ul id="imageGallery">
                         @if ($imovel['img_pach'] != '')
                             @foreach ($imovel['img_pach'] as $img)
-                                <li data-thumb="{{ $img }}" data-src="{{ $img }}">
-                                    <img class="img-fluid" src="{{ $img }}" />
+                                <li data-thumb="{{ $img }}" data-src="{{ $img }}" style="text-align: center; background-color: #a5a0a0;">
+                                    <img class="img-fluid" src="{{ $img }}" style="max-height: 500px;"/>
                                 </li>
                             @endforeach
                         @endif
@@ -75,7 +75,9 @@
                     <span><b>Valor.:</b> {{ $imovel['valor'].',00' }}</span>          <br>
 
                     <br>
-                    <span style="color: red;">Atenção: A disponibilidade e os valores dos imóveis estão sujeitos a alteração sem aviso prévio.</span>
+                    <span style="color: red;">
+                        Atenção: A disponibilidade e os valores dos imóveis estão sujeitos a alteração sem aviso prévio.
+                    </span>
                 </div>
             </div>
         </div>
