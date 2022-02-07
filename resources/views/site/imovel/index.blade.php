@@ -47,7 +47,7 @@
         -->
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-sm-12">
+                <div class="col-md-6 col-sm-12 mb-2">
                     <ul id="imageGallery">
                         @if ($imovel['img_pach'] != '')
                             @foreach ($imovel['img_pach'] as $img)
@@ -59,7 +59,7 @@
                     </ul>
                 </div>
                 <div class="col-md-6 col-sm-12">
-                    <div class="" style="width: 100%; text-align: right; display: flex; margin-top: 5px;">
+                    <div class="" style="width: 100%; text-align: right; display: flex;">
                         <div class="col-6" style="text-align: left;">
                             <h4>Informações</h4>
                         </div>
