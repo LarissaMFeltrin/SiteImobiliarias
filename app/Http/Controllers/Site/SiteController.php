@@ -600,6 +600,15 @@ class SiteController extends Controller
                 if($qtd['item'] == 'SuÃ­te(s)'){
                     $imoveis[$i]['qtde_suites'] = $qtd['qtd'];
                 }
+                if($qtd['item'] == 'S/ SUÃ­TE'){
+
+                    if($imoveis[$i]['qtde_suites'] != ''){
+                        $imoveis[$i]['qtde_suites'] =+ $qtd['qtd'];
+                    }else{
+                        $imoveis[$i]['qtde_suites'] = $qtd['qtd'];
+                    }
+
+                }
 
             }
 

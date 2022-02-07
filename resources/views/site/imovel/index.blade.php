@@ -9,6 +9,7 @@
             </div>
         </div>
         <hr>
+        <!--
         <div class="container">
             <div class="row bg-light border p-3 mb-3 d-flex align-items-center">
                 @if ($imovel['tp_bem'] !== 'Terreno')
@@ -41,18 +42,9 @@
                         @endif
                     </div>
                 @endif
-                <div class="@if ($imovel['tp_bem'] !== 'Terreno') col-lg-4 @else col-lg-12  @endif mt-3 mt-lg-0">
-                    <div class="row d-flex justify-content-center text-right">
-                        <div class="col-3 p-0 text-center">
-                            <a href="{{ $imovel['whatsapp'] }}" target="blank" class="btn btn-outline-secondary btn-lg btn-whats" title="Fale com um de nossos atendentes.">
-                                <i class="fab fa-whatsapp fa-fw" style="font-size: 20px"></i>
-                                Conversar
-                            </a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
+        -->
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-sm-12">
@@ -67,7 +59,17 @@
                     </ul>
                 </div>
                 <div class="col-md-6 col-sm-12">
-                    <h4>Informações</h4>
+                    <div class="" style="width: 100%; text-align: right; display: flex;">
+                        <div class="col-6" style="text-align: left;">
+                            <h4>Informações</h4>
+                        </div>
+                        <div class="col-6 text-right">
+                            <a href="{{ $imovel['whatsapp'] }}" target="blank" class="btn btn-outline-secondary btn-lg btn-whats" title="Fale com um de nossos atendentes.">
+                                <i class="fab fa-whatsapp fa-fw" style="font-size: 20px"></i>
+                                Conversar
+                            </a>
+                        </div>
+                    </div>
                     <hr>
                     <span><b>REF.:</b> {{ $imovel['referencia'] }}</span>           <br>
                     <span><b>Cidade.:</b> {{ $imovel['cidade'] }}</span>            <br>
