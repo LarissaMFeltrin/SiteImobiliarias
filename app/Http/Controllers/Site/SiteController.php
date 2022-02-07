@@ -454,13 +454,13 @@ class SiteController extends Controller
             'vlr_condominio'        => 'R$ ' . number_format($imv->vlr_condominio, 0, ',', '.'),
             'area_total'    => ($imv->area_total > 0 ? number_format($imv->area_total, 2, ',', '.') . ' m<sup>2</sup>' : null),
             'area_util'     => ($imv->area_util > 0 ? number_format($imv->area_util, 2, ',', '.') . ' m<sup>2</sup>' : null),
-            'qtde_quartos'  => $imv->qtde_quartos,
-            'qtde_suites'   => $imv->qtde_suites,
-            'qtde_salas'    => $imv->qtde_salas,
-            'qtde_cozinha'  => $imv->qtde_cozinhas,
-            'qtde_banheiro' => $imv->qtde_banheiros,
-            'qtde_garagens' => $imv->qtde_garagens,
-            'qtde_aservico' => $imv->qtde_area_servico,
+            'qtde_quartos'  => '',
+            'qtde_suites'   => '',
+            'qtde_salas'    => '',
+            'qtde_cozinha'  => '',
+            'qtde_banheiro' => '',
+            'qtde_garagens' => '',
+            'qtde_aservico' => '',
             'anuncio'       => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->anuncio)),
             'observacao1'   => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->observacao1)),
             'observacao2'   => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->observacao2)),
@@ -487,6 +487,34 @@ class SiteController extends Controller
 
         $aBenf = array_filter($aBenf);
         $imovel['benfeitorias'] = $aBenf;
+
+        $qtde = $this->contBenfeitoria($string_benf);
+
+        foreach ($qtde as $key => $qtd) {
+
+            if($qtd['item'] == 'DormitÃ³rio'){
+                $imovel['qtde_quartos'] = $qtd['qtd'];
+            }
+            if($qtd['item'] == 'Banheiros'){
+                $imovel['qtde_banheiro'] = $qtd['qtd'];
+            }
+            if($qtd['item'] == 'VAGA(S) DE GARAGEM'){
+                $imovel['qtde_garagens'] = $qtd['qtd'];
+            }
+            if($qtd['item'] == 'SuÃ­te(s)'){
+                $imovel['qtde_suites'] = $qtd['qtd'];
+            }
+            if($qtd['item'] == 'S/ SUÃ­TE'){
+
+                if($imovel['qtde_suites'] != ''){
+                    $imovel['qtde_suites'] =+ $qtd['qtd'];
+                }else{
+                    $imovel['qtde_suites'] = $qtd['qtd'];
+                }
+
+            }
+
+        }
 
         return view('site.imovel.index', compact('imovel'));
     }
@@ -533,13 +561,13 @@ class SiteController extends Controller
                     'vlr_condominio'        => 'R$ ' . number_format($imv->vlr_condominio, 0, ',', '.'),
                     'area_total'    => ($imv->area_total > 0 ? number_format($imv->area_total, 2, ',', '.') . ' m<sup>2</sup>' : null),
                     'area_util'     => ($imv->area_util > 0 ? number_format($imv->area_util, 2, ',', '.') . ' m<sup>2</sup>' : null),
-                    'qtde_quartos'  => $imv->qtde_quartos,
-                    'qtde_suites'   => $imv->qtde_suites,
-                    'qtde_salas'    => $imv->qtde_salas,
-                    'qtde_cozinha'  => $imv->qtde_cozinhas,
-                    'qtde_banheiro' => $imv->qtde_banheiros,
-                    'qtde_garagens' => $imv->qtde_garagens,
-                    'qtde_aservico' => $imv->qtde_area_servico,
+                    'qtde_quartos'  => '',
+                    'qtde_suites'   => '',
+                    'qtde_salas'    => '',
+                    'qtde_cozinha'  => '',
+                    'qtde_banheiro' => '',
+                    'qtde_garagens' => '',
+                    'qtde_aservico' => '',
                     'anuncio'       => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->anuncio)),
                     'observacao1'   => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->observacao1)),
                     'observacao2'   => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->observacao2)),
@@ -554,6 +582,26 @@ class SiteController extends Controller
             ];
 
             $imoveis[$i]['whatsapp'] = $this->getUrlWhatsApp($imoveis[$i]);
+
+            $string_benf = Util::getStringUTF8($imv->benfeitorias);
+            $qtde = $this->contBenfeitoria($string_benf);
+
+            foreach ($qtde as $key => $qtd) {
+
+                if($qtd['item'] == 'DormitÃ³rio'){
+                    $imoveis[$i]['qtde_quartos'] = $qtd['qtd'];
+                }
+                if($qtd['item'] == 'Banheiros'){
+                    $imoveis[$i]['qtde_banheiro'] = $qtd['qtd'];
+                }
+                if($qtd['item'] == 'VAGA(S) DE GARAGEM'){
+                    $imoveis[$i]['qtde_garagens'] = $qtd['qtd'];
+                }
+                if($qtd['item'] == 'SuÃ­te(s)'){
+                    $imoveis[$i]['qtde_suites'] = $qtd['qtd'];
+                }
+
+            }
 
             $i++;
         }
@@ -634,6 +682,55 @@ class SiteController extends Controller
             }
 
             $benfeitorias .= $this->TrataTipoBenfeitoria($item, $tp, $qtd) . $chSeparador;
+        }
+        return $benfeitorias;
+    }
+
+    private function contBenfeitoria($string, $chSeparador=", ")
+    {
+        $benf = new BenfCruz;
+        $dataProvider = $benf::all();
+
+        foreach ($dataProvider as $data) {
+            $return[$data->id] = $data->aLegenda;
+        }
+
+        $benfe = explode(',', $string);
+
+        foreach ($benfe as $benfeitoria) {
+            $ids[] = explode('[', str_replace(' ', '', $benfeitoria));
+        }
+
+        $benfeitorias = [];
+        $i            = 0;
+
+        foreach ($ids as $id) {
+            // $qtd = substr($id[1], -2,1);
+            // $qtd = substr($id[1], -9,7);
+            if (isset($id[1])) {
+                $qtd = substr($id[1], 1, -1);
+            } else {
+                $qtd = 0;
+            }
+            if (isset($id[1][0])) {
+                $tp = $id[1][0];
+            } else {
+                $tp = "";
+            }
+            if (isset($return[$id[0]])) {
+                $item = $return[$id[0]];
+            } else {
+                $item = "";
+            }
+
+            $benfeitorias[$i] = [
+                'item'      => $item,
+                'tp'        => $tp,
+                'qtd'       => $qtd,
+                'tratado'   => $this->TrataTipoBenfeitoria($item, $tp, $qtd)
+            ];
+
+            $i++;
         }
         return $benfeitorias;
     }

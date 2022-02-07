@@ -13,24 +13,32 @@
             <div class="row bg-light border p-3 mb-3 d-flex align-items-center">
                 @if ($imovel['tp_bem'] !== 'Terreno')
                     <div class="col-lg-2 col-6 text-center">
-                        <i class="fas fa-bed fa-fw fa-lg"></i> <br>
-                        {{ $imovel['qtde_quartos'] }}
-                        Quartos
+                        @if ($imovel['qtde_quartos'] != '')
+                            <i class="fas fa-bed fa-fw fa-lg"></i> <br>
+                            {{ $imovel['qtde_quartos'] }}
+                            Quartos
+                        @endif
                     </div>
                     <div class="col-lg-2 col-6 text-center">
-                        <i class="fas fa-shower fa-fw fa-lg"></i> <br>
-                        {{ $imovel['qtde_banheiro'] }}
-                        Banheiros
+                        @if ($imovel['qtde_banheiro'] != '')
+                            <i class="fas fa-shower fa-fw fa-lg"></i> <br>
+                            {{ $imovel['qtde_banheiro'] }}
+                            Banheiros
+                        @endif
                     </div>
                     <div class="col-lg-2 col-6 text-center">
-                        <i class="fas fa-bath fa-fw fa-lg"></i> <br>
-                        {{ $imovel['qtde_suites'] }}
-                        Suites
+                        @if ($imovel['qtde_suites'] != '')
+                            <i class="fas fa-bath fa-fw fa-lg"></i> <br>
+                            {{ $imovel['qtde_suites'] }}
+                            Suites
+                        @endif
                     </div>
                     <div class="col-lg-2 col-6 text-center">
-                        <i class="fas fa-car fa-fw fa-lg"></i> <br>
-                        {{ $imovel['qtde_garagens'] }}
-                        Vagas
+                        @if ($imovel['qtde_garagens'] != '')
+                            <i class="fas fa-car fa-fw fa-lg"></i> <br>
+                            {{ $imovel['qtde_garagens'] }}
+                            Vagas
+                        @endif
                     </div>
                 @endif
                 <div class="@if ($imovel['tp_bem'] !== 'Terreno') col-lg-4 @else col-lg-12  @endif mt-3 mt-lg-0">
@@ -61,18 +69,18 @@
                 <div class="col-md-6 col-sm-12">
                     <h4>Informações</h4>
                     <hr>
-                    <span><b>REF.:</b> {{ $imovel['referencia'] }}</span>       <br>
-                    <span><b>Cidade.:</b> {{ $imovel['cidade'] }}</span>        <br>
-                    <span><b>Bairro.:</b> {{ $imovel['bairro'] }}</span>        <br>
+                    <span><b>REF.:</b> {{ $imovel['referencia'] }}</span>           <br>
+                    <span><b>Cidade.:</b> {{ $imovel['cidade'] }}</span>            <br>
+                    <span><b>Bairro.:</b> {{ $imovel['bairro'] }}</span>            <br>
                     @if ($imovel['finalidade'] == 'Locacao')
                         <span><b>Endereço.:</b> {{ $imovel['endereco'] }}</span>    <br>
                     @endif
 
                     <br>
 
-                    <span><b>Tipo.:</b> {{ $imovel['tp_bem'] }}</span>          <br>
-                    <span><b>Aplicação.:</b> {{ $imovel['aplicacao'] }}</span>  <br>
-                    <span><b>Valor.:</b> {{ $imovel['valor'].',00' }}</span>          <br>
+                    <span><b>Tipo.:</b> {{ $imovel['tp_bem'] }}</span>              <br>
+                    <span><b>Aplicação.:</b> {{ $imovel['aplicacao'] }}</span>      <br>
+                    <span><b>Valor.:</b> {{ $imovel['valor'].',00' }}</span>        <br>
 
                     <br>
                     <span style="color: red;">
