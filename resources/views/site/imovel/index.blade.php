@@ -59,7 +59,7 @@
                     </ul>
                 </div>
                 <div class="col-md-6 col-sm-12">
-                    <div class="" style="width: 100%; text-align: right; display: flex;">
+                    <div class="" style="width: 100%; text-align: right; display: flex; margin-top: 5px;">
                         <div class="col-6" style="text-align: left;">
                             <h4>Informações</h4>
                         </div>
