@@ -247,5 +247,10 @@
       max-height: 260px;
   }
 }
+@media screen and (max-width: 450px) {
+  #img_responsive {
+      max-height: 260px;
+  }
+}
 </style>
 @endsection
