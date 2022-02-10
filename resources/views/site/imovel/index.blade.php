@@ -52,7 +52,7 @@
                         @if ($imovel['img_pach'] != '')
                             @foreach ($imovel['img_pach'] as $img)
                                 <li data-thumb="{{ $img }}" data-src="{{ $img }}" style="text-align: center; background-color: #a5a0a0;">
-                                    <img class="img-fluid" src="{{ $img }}" style="max-height: 500px;"/>
+                                    <img class="img-fluid" src="{{ $img }}" id="img_responsive"/>
                                 </li>
                             @endforeach
                         @endif
@@ -233,6 +233,14 @@
 .btn-whats:hover{
     background: green;
     color: #fff;
+}
+#img_responsive {
+    max-height: 500px;
+}
+@media screen and (max-width: 375px) {
+  #img_responsive {
+      max-height: 260px;
+  }
 }
 </style>
 @endsection
