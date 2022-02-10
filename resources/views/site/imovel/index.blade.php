@@ -249,7 +249,7 @@
 }
 @media screen and (max-width: 450px) {
   #img_responsive {
-      max-height: 260px;
+      max-height: 300px;
   }
 }
 </style>
