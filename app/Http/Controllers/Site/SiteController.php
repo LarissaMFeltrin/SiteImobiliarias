@@ -52,8 +52,8 @@ class SiteController extends Controller
                     break;
             }
         }else{
-            $colum   =   'cod_bem';
-            $orderby = 'DESC';
+            $colum   =   'vlr_oferta';
+            $orderby = 'asc';
         }
         $imovel     = Imovel::where('id_imob', '=', '85')
                     ->where('finalidade', '=', 'Venda')
@@ -92,8 +92,8 @@ class SiteController extends Controller
                     $orderby = 'desc';
                     break;
                 case '3':
-                    $colum   =   'cod_bem';
-                    $orderby = 'DESC';
+                    $colum   =   'vlr_oferta';
+                    $orderby = 'asc';
                     break;
             }
         }else{
@@ -144,8 +144,8 @@ class SiteController extends Controller
                     break;
             }
         }else{
-            $colum   =   'cod_bem';
-            $orderby = 'DESC';
+            $colum   =   'vlr_oferta';
+            $orderby = 'asc';
         }
 
         $imovel = Imovel::where('id_imob', '=', '85')
@@ -185,6 +185,7 @@ class SiteController extends Controller
             $imovel = Imovel::where('id_imob', '=', '85')
             ->where('finalidade', '=', $busca['finalidade'])
             ->where('tp_bem', '=', $busca['tipo'])
+            ->orderBy('vlr_oferta', 'asc')
             ->paginate(10);
         }
 

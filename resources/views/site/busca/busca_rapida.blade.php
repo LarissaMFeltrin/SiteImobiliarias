@@ -4,8 +4,8 @@
 <section id="imoveis" class="imoveis-lista">
     <div class="container">
         <div class=" section-title">
-            <h2>VENDA</h2>
-            <p>Imóveis Disponíveis, Venda</p>
+            <h2>{{ Str::upper($_GET['finalidade']) }}</h2>
+            <p>Imóveis Disponíveis, {{ Str::upper($_GET['finalidade']) }}</p>
         </div>
 
         <div class="row border" style="padding: 10px;">
@@ -39,6 +39,13 @@
                                     <small>
                                         <b>Ref: {{ $imv['referencia'] }}</b> - {{ $imv['tp_bem'] }}
                                     </small>
+                                    <br>
+                                    @if ($imv['valor'] != 'R$ 0')
+                                        <br>
+                                        <span>
+                                            <b>Valor:</b> {{ $imv['valor'] . ',00' }}
+                                        </span>
+                                    @endif
                                 </div>
                                 <div class="col-12 mt-3">
                                     <div class="row text-center">

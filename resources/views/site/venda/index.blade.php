@@ -39,6 +39,12 @@
                                     <small>
                                         <b>Ref: {{ $imv['referencia'] }}</b> - {{ $imv['tp_bem'] }}
                                     </small>
+                                    @if ($imv['valor'] != 'R$ 0')
+                                        <br>
+                                        <span>
+                                            <b>Valor:</b> {{ $imv['valor'] . ',00' }}
+                                        </span>
+                                    @endif
                                 </div>
                                 <div class="col-12 mt-3">
                                     <div class="row text-center">
