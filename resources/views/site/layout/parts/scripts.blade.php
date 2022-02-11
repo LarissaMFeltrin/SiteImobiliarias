@@ -19,7 +19,7 @@
 <script type="text/javascript">
     $(function () {
         $('#myButton').floatingWhatsApp({
-            phone: '18996017141',
+            phone: '5518996017141',
             popupMessage: 'Tem alguma dúvida, gostaria de mais informações?',
             message: "Sim",
             showPopup: true,
