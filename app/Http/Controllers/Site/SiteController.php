@@ -850,7 +850,7 @@ class SiteController extends Controller
                 }
 
             }
-            dd($aNewArray);
+
             ksort($aNewArray);
             $url = 'https://www.encontraimoveis.com.br/img/';
 
