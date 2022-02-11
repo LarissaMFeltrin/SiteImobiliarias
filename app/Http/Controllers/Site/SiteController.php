@@ -647,9 +647,9 @@ class SiteController extends Controller
         $url .= '%0A';
         $url .= '%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D';
         if($aDados['tipo'] == 'VENDA'){
-            $url .= '&phone=5518996017141';
-        }else{
             $url .= '&phone=5518998245827';
+        }else{
+            $url .= '&phone=5518996017141';
         }
 
         return $url;
