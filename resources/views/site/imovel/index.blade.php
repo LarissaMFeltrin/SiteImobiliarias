@@ -123,7 +123,7 @@
                             <p>{!! $imovel['area_total'] !!}</p>
                         </div>
                         <div class="col-md-3 col-sm-12">
-                            <b>Valor compra:</b>
+                            <b>Valor:</b>
                             <p>{{ $imovel['valor'].',00' }}</p>
                         </div>
                     </div>
