@@ -850,11 +850,9 @@ class SiteController extends Controller
                 }
 
             }
-
+            dd($aNewArray);
             ksort($aNewArray);
             $url = 'https://www.encontraimoveis.com.br/img/';
-
-            dd($aArrayArq);
 
             foreach($aNewArray as $kay => $img){
                 $imagem_1[$kay] = $url . $img;
