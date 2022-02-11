@@ -641,10 +641,6 @@ class SiteController extends Controller
         $url .= '%0A*';
         $url .= 'Aplica%C3%A7%C3%A3o%3A*%20'. $aDados['aplicacao'];
         $url .= '%0A*';
-        $url .= 'Estrutura%3A*%20'. $aDados['estrutura'];
-        $url .= '%0A*';
-        $url .= 'Estado%3A*%20'. $aDados['estado'];
-        $url .= '%0A*';
         $url .= 'Valor%3A*%20'. $aDados['valor'];
         $url .= '%0A';
         $url .= '%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D';
@@ -653,7 +649,7 @@ class SiteController extends Controller
         if($aDados['tipo'] == 'VENDA'){
             $url .= '&phone=5518996017141';
         }else{
-            $url .= '&phone=5518997557255';
+            $url .= '&phone=5518998245827';
         }
 
         return $url;
