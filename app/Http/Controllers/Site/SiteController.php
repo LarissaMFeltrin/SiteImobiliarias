@@ -854,7 +854,7 @@ class SiteController extends Controller
             ksort($aNewArray);
             $url = 'https://www.encontraimoveis.com.br/img/';
 
-            dd($aNewArray);
+            dd($aArrayArq);
 
             foreach($aNewArray as $kay => $img){
                 $imagem_1[$kay] = $url . $img;
