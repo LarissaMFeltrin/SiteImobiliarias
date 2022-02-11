@@ -839,6 +839,7 @@ class SiteController extends Controller
 
             foreach($aArrayArq as $img) {
                 $str = substr($img, 30);
+                dd($str);
                 $str_c = substr($str, 0, 4);
 
                 if($str_c == "imgr"){
