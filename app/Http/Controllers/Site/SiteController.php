@@ -863,7 +863,7 @@ class SiteController extends Controller
                 $imagem_1 = '';
             }
 
-            dd($imagem_1);
+            dd($aNewArray);
             return $imagem_1;
 
     }
