@@ -650,7 +650,11 @@ class SiteController extends Controller
         $url .= '%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D';
         $url .= '%0A';
         $url .= '%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D';
-        $url .= '&phone=5544988435803';
+        if($aDados['tipo'] == 'VENDA'){
+            $url .= '&phone=5518996017141';
+        }else{
+            $url .= '&phone=5518997557255';
+        }
 
         return $url;
     }
