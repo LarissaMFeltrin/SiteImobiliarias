@@ -834,6 +834,8 @@ class SiteController extends Controller
         $aNome = sprintf("????-%09d.???", $id_bem);
         $aArrayArq = glob($aPath . $aNome);
 
+        dd($aArrayArq);
+
        	$aNewArray = [];
        	$i=1;
 
@@ -863,7 +865,6 @@ class SiteController extends Controller
                 $imagem_1 = '';
             }
 
-            dd($aNewArray);
             return $imagem_1;
 
     }
