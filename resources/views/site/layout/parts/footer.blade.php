@@ -26,11 +26,11 @@
           <div class="col-lg-2 col-md-6 footer-links">
             <h4>Nossos Links</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Locação</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Venda</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Empresa</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Contato</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ route('home') }}">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ route('locacao') }}">Locação</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ route('venda') }}">Venda</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ route('empresa') }}">Empresa</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ route('contato') }}">Contato</a></li>
             </ul>
           </div>
 
