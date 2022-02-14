@@ -97,8 +97,8 @@ class SiteController extends Controller
                     break;
             }
         }else{
-            $colum   =   'cod_bem';
-            $orderby = 'DESC';
+            $colum   =   'vlr_oferta';
+            $orderby = 'asc';
         }
         $imovel = Imovel::where('id_imob', '=', '85')
                     ->where('finalidade', '=', 'Locacao')
