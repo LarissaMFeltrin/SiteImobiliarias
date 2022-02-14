@@ -85,9 +85,9 @@
                     <span><b>Valor.:</b> {{ $imovel['valor'].',00' }}</span>        <br>
 
                     @if ($imovel['finalidade'] == 'Locacao')
-                        <span><b>IPTU.:</b> {{ $imovel['vlr_iptu'].',00' }}</span>        <br>
-                        <span><b>Seguro Incêndio Anual:</b> {{ $imovel['observacao1'] }}</span>        <br>
-                        <span><b>Condomínio Apxm.:</b> {{ $imovel['vlr_condominio'].',00' }}</span>        <br>
+                        @if($imovel['vlr_iptu'].',00' !== 'R$ 0') <span><b>IPTU.:</b> {{ $imovel['vlr_iptu'].',00' }}</span>                        <br>    @endif
+                        @if($imovel['observacao1'].',00' !== '')  <span><b>Seguro Incêndio Anual:</b> {{ $imovel['observacao1'] }}</span>           <br>    @endif
+                        @if($imovel['vlr_condominio'].',00' !== 'R$ 0') <span><b>Condomínio Apxm.:</b> {{ $imovel['vlr_condominio'].',00' }}</span> <br>    @endif
                     @endif
 
                     <br>
