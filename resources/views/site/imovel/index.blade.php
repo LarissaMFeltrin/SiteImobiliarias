@@ -84,6 +84,12 @@
                     <span><b>Aplicação.:</b> {{ $imovel['aplicacao'] }}</span>      <br>
                     <span><b>Valor.:</b> {{ $imovel['valor'].',00' }}</span>        <br>
 
+                    @if ($imovel['finalidade'] == 'Locacao')
+                        <span><b>IPTU.:</b> {{ $imovel['vlr_iptu'].',00' }}</span>        <br>
+                        <span><b>Seguro Incêndio Anual:</b> {{ $imovel['vlr_observacao1'].',00' }}</span>        <br>
+                        <span><b>Condomínio Apxm.:</b> {{ $imovel['vlr_condominio'].',00' }}</span>        <br>
+                    @endif
+
                     <br>
                     <span style="color: red;">
                         Atenção: A disponibilidade e os valores dos imóveis estão sujeitos a alteração sem aviso prévio.
