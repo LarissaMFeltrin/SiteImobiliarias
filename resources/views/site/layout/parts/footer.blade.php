@@ -37,9 +37,9 @@
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Serviços</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Área Proprietário</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Área Locatário</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Área do Atendente</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="http://old.samburaimoveis.com.br/cdadmar/loginProprietario" target="_">Área Proprietário</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="http://old.samburaimoveis.com.br/cdadmar/loginLocatario" target="_">Área Locatário</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="http://old.samburaimoveis.com.br/cdadmar/login" target="_">Área do Atendente</a></li>
             </ul>
           </div>
 

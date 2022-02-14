@@ -44,9 +44,9 @@
             </li>
             <li class="dropdown"><a href="#"><span>Serviços</span> <i class="bi bi-chevron-down"></i></a>
                 <ul>
-                <li><a href="#">Área do Proprietário</a></li>
-                <li><a href="#">Área do Locatário</a></li>
-                <li><a href="#">Área do Atendente</a></li>
+                <li><a href="http://old.samburaimoveis.com.br/cdadmar/loginProprietario" target="_">Área do Proprietário</a></li>
+                <li><a href="http://old.samburaimoveis.com.br/cdadmar/loginLocatario" target="_">Área do Locatário</a></li>
+                <li><a href="http://old.samburaimoveis.com.br/cdadmar/login" target="_">Área do Atendente</a></li>
                 </ul>
             </li>
 
