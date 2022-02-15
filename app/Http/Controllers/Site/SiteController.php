@@ -181,10 +181,18 @@ class SiteController extends Controller
             $imovel = Imovel::where('id_imob', '=', '85')
             ->where('id', 'LIKE', '%' . $busca['referencia'] . '%')
             ->paginate(10);
-        }else{
+        }
+        else
+        if(isset($busca['tp_bem'])){
             $imovel = Imovel::where('id_imob', '=', '85')
             ->where('finalidade', '=', $busca['finalidade'])
             ->where('tp_bem', '=', $busca['tipo'])
+            ->orderBy('vlr_oferta', 'asc')
+            ->paginate(10);
+        }
+        else{
+            $imovel = Imovel::where('id_imob', '=', '85')
+            ->where('finalidade', '=', $busca['finalidade'])
             ->orderBy('vlr_oferta', 'asc')
             ->paginate(10);
         }
