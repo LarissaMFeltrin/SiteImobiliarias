@@ -183,7 +183,7 @@ class SiteController extends Controller
             ->paginate(10);
         }
         else
-        if(isset($busca['tp_bem'])){
+        if(isset($busca['tipo'])){
             $imovel = Imovel::where('id_imob', '=', '85')
             ->where('finalidade', '=', $busca['finalidade'])
             ->where('tp_bem', '=', $busca['tipo'])
