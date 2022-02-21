@@ -113,6 +113,16 @@
                         </li>
                     @endforeach
                 </ul>
+                <form action="{{ route('busca.avancada') }}" method="GET">
+                    <input type="text" class="form-control" placeholder="BUSCAR REFERÊNCIA" name="referencia" id="referencia">
+                    <input type="hidden" name="finalidade" id="finalidade" value="">
+                    <input type="hidden" name="tipo" id="tipo" value="">
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-danger btn-block mt-2">
+                            BUSCAR
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

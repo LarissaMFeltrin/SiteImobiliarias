@@ -92,7 +92,11 @@
 
                     <br>
                     <span style="color: red;">
-                        Atenção: A disponibilidade e os valores dos imóveis estão sujeitos a alteração sem aviso prévio.
+                        @if ($imovel['finalidade'] == 'Locacao')
+                            Atenção: O Valor do imóvel está bonificado. A disponibilidade e os valores dos imóveis estão sujeitos a alteração sem aviso prévio.
+                        @else
+                            Atenção: A disponibilidade e os valores dos imóveis estão sujeitos a alteração sem aviso prévio.
+                        @endif
                     </span>
                 </div>
             </div>
