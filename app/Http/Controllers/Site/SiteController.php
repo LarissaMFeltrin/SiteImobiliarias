@@ -197,6 +197,24 @@ class SiteController extends Controller
             ->paginate(10);
         }
 
+        if($imovel->total() == 0){
+            $tp_bem_venda   = DB::table('imovel')
+                    ->select('tp_bem', DB::raw('count(*) as count, tp_bem'))
+                    ->where('id_imob', '=', '85')
+                    ->where('finalidade', '=', 'Venda')
+                    ->groupBy('tp_bem')
+                    ->get();
+
+            $tp_bem_locacao  = DB::table('imovel')
+                    ->select('tp_bem', DB::raw('count(*) as count, tp_bem'))
+                    ->where('id_imob', '=', '85')
+                    ->where('finalidade', '=', 'Locacao')
+                    ->groupBy('tp_bem')
+                    ->get();
+
+            return view('site.busca.n_busca_rapida', compact('imovel', 'tp_bem_venda', 'tp_bem_locacao', 'busca'));
+        }
+
         $imoveis = $this->getRetorno($imovel);
 
         $tp_bem_venda   = DB::table('imovel')
