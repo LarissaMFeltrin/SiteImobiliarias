@@ -595,6 +595,7 @@ class SiteController extends Controller
                     'qtde_banheiro' => '',
                     'qtde_garagens' => '',
                     'qtde_aservico' => '',
+                    'dt_reserva'    => $imv->dt_reserva,
                     'anuncio'       => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->anuncio)),
                     'observacao1'   => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->observacao1)),
                     'observacao2'   => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->observacao2)),

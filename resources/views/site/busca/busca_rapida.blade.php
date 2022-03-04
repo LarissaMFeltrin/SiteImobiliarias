@@ -22,6 +22,9 @@
                             <a href="{{ route('imovel', ['descricao' => $imv['url_amigavel'], 'id' => $imv['cod_bem']]) }}">
                                 <img src="{{ $imv['img'] }}" class="img-fluid" alt="" style="max-height: 290px;">
                             </a>
+                            @if ($imv['dt_reserva'] != '0000-00-00')
+                                <span>Reservado</span>
+                            @endif
                         </div>
                         <div class="col-sm-12 col-md-7">
                             <div class="row">
