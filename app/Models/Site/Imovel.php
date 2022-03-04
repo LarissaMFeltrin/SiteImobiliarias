@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Imovel
- * 
+ *
  * @property int $cod_bem
  * @property int $id_imob
  * @property int $id
@@ -49,7 +49,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $estrutura_Ajustada
  * @property string|null $benfeitorias
  * @property string|null $comentario
- * @property Carbon|null $dt_reserva
+ * @property string|null $dt_reserva
  * @property string|null $tp_bem
  * @property string|null $tp_bem_Ajustado
  * @property string|null $finalidade
@@ -175,7 +175,6 @@ class Imovel extends Model
 	];
 
 	protected $dates = [
-		'dt_reserva',
 		'data_inc',
 		'dt_opcao',
 		'dt_latlng'

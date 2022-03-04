@@ -25,12 +25,12 @@
                                         <img src="{{ $imv['img'] }}" class="img-fluid" alt="" style="max-height: 290px;">
                                     </a>
                                 </div>
-                                <div class="col-md-12 p-2" style="background-color: #c93238; color:#fff; ">
-                                    @if ($imv['dt_reserva'] != '0000-00-00')
+                                @if ($imv['dt_reserva'] != '0000-00-00')
+                                    <div class="col-md-12 p-2" style="background-color: #c93238; color:#fff; ">
                                         <img src="{{ asset('images/reserva.png') }}">
                                         <span>Imóvel Reservado</span>
-                                    @endif
-                                </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-7">
