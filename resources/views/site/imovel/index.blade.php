@@ -75,7 +75,8 @@
                     <span><b>Cidade.:</b> {{ $imovel['cidade'] }}</span>            <br>
                     <span><b>Bairro.:</b> {{ $imovel['bairro'] }}</span>            <br>
                     @if ($imovel['finalidade'] == 'Locacao')
-                        <span><b>Endereço.:</b> {{ $imovel['endereco'] }}</span>    <br>
+                        <span><b>Endereço.:</b> {{ $imovel['endereco'] }}, <br> {{ $imovel['endereco_2'] }}</span>    <br>
+                        <span><b>Complemento.:</b> {{ $imovel['complemento'] }}</span>    <br>
                     @endif
 
                     <br>
