@@ -1,10 +1,12 @@
 <section id="hero">
 </section>
+<!--
 <div class="unimob">
     <a href="https://www.unimob.com.br/" target="_" class="" title="Unimob">
         <img src="{{ asset('images/unimob_.png') }}" class="img-fluid" alt="">
     </a>
 </div>
+-->
 
 @section('style')
 <style>

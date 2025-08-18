@@ -55,9 +55,11 @@
                 <a href="https://soundcloud.com/sambukacast" target="_" class="instagram" title="SamburaCast">
                     <img src="{{ asset('images/smbura_cast.png') }}" alt="" class="img-fluid" style="max-width: 30px">
                 </a>
+                <!--
                 <a href="https://www.unimob.com.br/" target="_" class="facebook" title="Unimob">
                     <img src="{{ asset('images/unimob_icon.png') }}" alt="" class="img-fluid" style="max-width: 20px">
                 </a>
+                -->
                 <a href="https://www.urbanizetv.com.br/" target="_" class="facebook" title="Urbanize">
                     <img src="{{ asset('images/logo_tv.png') }}" alt="" class="img-fluid" style="max-width: 30px">
                 </a>
@@ -84,7 +86,8 @@
 </footer>
 <!-- End Footer -->
 
-<div id="preloader"></div>
+<!--<div id="preloader"></div>-->
+
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
     <i class="bi bi-arrow-up-short"></i>
 </a>

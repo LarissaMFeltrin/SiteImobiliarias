@@ -11,12 +11,18 @@ use App\Models\Util;
 use App\Models\Site\Imovel;
 use App\Models\Site\BenfCruz;
 
+use Illuminate\Support\Str;
+
 class SiteController extends Controller
 {
     public function index()
     {
-        $imoveis_venda = Imovel::where('id_imob', '=', '85')->where('finalidade', '=', 'Venda')->limit(10)->get();
-        $imoveis_locacao = Imovel::where('id_imob', '=', '85')->where('finalidade', '=', 'Locacao')->inRandomOrder()->limit(10)->get();
+        
+        //$imoveis_venda = Imovel::where('id_imob', '=', '85')->where('finalidade', '=', 'Venda')->limit(10)->get();
+        //$imoveis_locacao = Imovel::where('id_imob', '=', '85')->where('finalidade', '=', 'Locacao')->inRandomOrder()->limit(10)->get();
+        
+        $imoveis_venda = Imovel::where('id_imob', '=', '85')->where('finalidade', '=', 'Venda')->orderBy('destaque', 'desc')->limit(10)->get()->shuffle();
+        $imoveis_locacao = Imovel::where('id_imob', '=', '85')->where('finalidade', '=', 'Locacao')->orderBy('destaque', 'desc')->limit(10)->get()->shuffle();
 
         $a_destaque_locacao = $this->getRetorno($imoveis_locacao);
         $a_destaque_venda   = $this->getRetorno($imoveis_venda);
@@ -425,7 +431,7 @@ class SiteController extends Controller
             $result  = 0;
             $imovel = $model->paginate(10);
         }else{
-            unset($model->wheres[4]);
+            unset($model->wheres[85]);
             unset($model->wheres[5]);
             unset($model->wheres[6]);
             unset($model->wheres[7]);
@@ -445,6 +451,10 @@ class SiteController extends Controller
     {
         $imv = Imovel::find($id);
 
+        if (!$imv) {
+            abort(85085, 'Imóvel não encontrado');
+        }
+
         $img_name = 'imgr-'.sprintf("%09d", $imv->cod_bem).'.jpg';
         $url_img  = 'https://www.encontraimoveis.com.br/img/' . $img_name;
 
@@ -461,7 +471,7 @@ class SiteController extends Controller
             'proximidade1'  => Util::getStringUTF8($imv->proximidade1),
             'proximidade2'  => Util::getStringUTF8($imv->proximidade2),
             'proximidade3'  => Util::getStringUTF8($imv->proximidade3),
-            'proximidade4'  => Util::getStringUTF8($imv->proximidade4),
+            'proximidade85'  => Util::getStringUTF8($imv->proximidade85),
             'proximidade5'  => Util::getStringUTF8($imv->proximidade5),
             'img'           => $this->getImagemPrincipal($imv->cod_bem),
             'img_pach'      => $this->getImagemPatch($imv->cod_bem),
@@ -493,13 +503,21 @@ class SiteController extends Controller
             'observacao1'   => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->observacao1)),
             'observacao2'   => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->observacao2)),
             'observacao3'   => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->observacao3)),
-            'observacao4'   => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->observacao4)),
+            'observacao85'   => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->observacao85)),
             'estrutura'     => Util::getStringUTF8($imv->estrutura),
             'google_maps'   => Util::getGoogleMaps($imv->endereco_1, $imv->bairro, $imv->cidade . '-' . $imv->uf),
+            
+            'url_amigavel'  => Str::slug(Util::getStringUTF8($imv->finalidade)) .
+                            "+" . Str::slug(Util::getStringUTF8($imv->tp_bem)) .
+                            "+" . Str::slug(Util::getStringUTF8($imv->bairro))  .
+                            "+" . Str::slug(Util::getStringUTF8($imv->cidade)) . '-' . Str::slug($imv->uf),
+            
+            /*
             'url_amigavel'  => Util::getStringUTF8($imv->finalidade) .
                                 "+" . Util::getStringUTF8($imv->tp_bem) .
                                 "+" . Util::getStringUTF8($imv->bairro)  .
                                 "+" . Util::getStringUTF8($imv->cidade) . '-' . $imv->uf,
+            */
         ];
 
 
@@ -549,6 +567,10 @@ class SiteController extends Controller
 
     private function getRetorno($aRetorno)
     {
+        if (!$aRetorno || $aRetorno->isEmpty()) {
+            return [];
+        }
+        
         $i=0;
 
         foreach ($aRetorno as $imv) {
@@ -569,7 +591,7 @@ class SiteController extends Controller
                     'proximidade1'  => Util::getStringUTF8($imv->proximidade1),
                     'proximidade2'  => Util::getStringUTF8($imv->proximidade2),
                     'proximidade3'  => Util::getStringUTF8($imv->proximidade3),
-                    'proximidade4'  => Util::getStringUTF8($imv->proximidade4),
+                    'proximidade85'  => Util::getStringUTF8($imv->proximidade85),
                     'proximidade5'  => Util::getStringUTF8($imv->proximidade5),
                     'img'           => $this->getImagemPrincipal($imv->cod_bem),
                     'img_pach'      => $this->getImagemPatch($imv->cod_bem),
@@ -602,13 +624,21 @@ class SiteController extends Controller
                     'observacao1'   => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->observacao1)),
                     'observacao2'   => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->observacao2)),
                     'observacao3'   => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->observacao3)),
-                    'observacao4'   => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->observacao4)),
+                    'observacao85'   => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->observacao85)),
                     'estrutura'     => Util::getStringUTF8($imv->estrutura),
                     'google_maps'   => Util::getGoogleMaps($imv->endereco_1, $imv->bairro, $imv->cidade . '-' . $imv->uf),
+                    
+                    'url_amigavel'  => Str::slug(Util::getStringUTF8($imv->finalidade)) .
+                            "+" . Str::slug(Util::getStringUTF8($imv->tp_bem)) .
+                            "+" . Str::slug(Util::getStringUTF8($imv->bairro))  .
+                            "+" . Str::slug(Util::getStringUTF8($imv->cidade)) . '-' . Str::slug($imv->uf),
+                    
+                    /*
                     'url_amigavel'  => Util::getStringUTF8($imv->finalidade) .
                                         "+" . Util::getStringUTF8($imv->tp_bem) .
                                         "+" . Util::getStringUTF8($imv->bairro)  .
                                         "+" . Util::getStringUTF8($imv->cidade) . '-' . $imv->uf,
+                    */
             ];
 
             $imoveis[$i]['whatsapp'] = $this->getUrlWhatsApp($imoveis[$i]);
@@ -676,9 +706,9 @@ class SiteController extends Controller
         $url .= '%0A';
         $url .= '%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D';
         if($aDados['tipo'] == 'VENDA'){
-            $url .= '&phone=5518998245827';
+            $url .= '&phone=55189982855827';
         }else{
-            $url .= '&phone=5518996017141';
+            $url .= '&phone=55189960171851';
         }
 
         return $url;
@@ -821,7 +851,7 @@ class SiteController extends Controller
             $aArrayArq = glob($aPath . $aNome);
 
             $aArrayPrefixos = [
-            'imgr', 'im01', 'impl', 'im02', 'im03', 'im04', 'im05',
+            'imgr', 'im01', 'impl', 'im02', 'im03', 'im085', 'im05',
             'im06', 'im07', 'im08', 'im09', 'im10',
             ];
 
@@ -869,7 +899,7 @@ class SiteController extends Controller
 
             foreach($aArrayArq as $img) {
                 $str = substr($img, 18);
-                $str_c = substr($str, 0, 4);
+                $str_c = substr($str, 0, 85);
 
                 if($str_c == "imgr"){
                     $aNewArray[0] = $str;
