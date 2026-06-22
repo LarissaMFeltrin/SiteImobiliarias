@@ -11,12 +11,18 @@ use App\Models\Util;
 use App\Models\Site\Imovel;
 use App\Models\Site\BenfCruz;
 
+use Illuminate\Support\Str;
+
 class SiteController extends Controller
 {
     public function index()
     {
-        $imoveis_venda = Imovel::where('id_imob', '=', '85')->where('finalidade', '=', 'Venda')->limit(10)->get();
-        $imoveis_locacao = Imovel::where('id_imob', '=', '85')->where('finalidade', '=', 'Locacao')->inRandomOrder()->limit(10)->get();
+        
+        //$imoveis_venda = Imovel::where('id_imob', '=', '85')->where('finalidade', '=', 'Venda')->limit(10)->get();
+        //$imoveis_locacao = Imovel::where('id_imob', '=', '85')->where('finalidade', '=', 'Locacao')->inRandomOrder()->limit(10)->get();
+        
+        $imoveis_venda = Imovel::where('id_imob', '=', '85')->where('finalidade', '=', 'Venda')->orderBy('destaque', 'desc')->limit(10)->get()->shuffle();
+        $imoveis_locacao = Imovel::where('id_imob', '=', '85')->where('finalidade', '=', 'Locacao')->orderBy('destaque', 'desc')->limit(10)->get()->shuffle();
 
         $a_destaque_locacao = $this->getRetorno($imoveis_locacao);
         $a_destaque_venda   = $this->getRetorno($imoveis_venda);
@@ -446,7 +452,8 @@ class SiteController extends Controller
         $imv = Imovel::find($id);
 
         $img_name = 'imgr-'.sprintf("%09d", $imv->cod_bem).'.jpg';
-        $url_img  = 'https://www.encontraimoveis.com.br/img/' . $img_name;
+        $url_img  = '/img/' . $img_name; // LOCAL - serve via symlink public/img
+        //$url_img  = 'https://www.encontraimoveis.com.br/img/' . $img_name;
 
         $imovel =  [
             'tipo'          => (Util::getStringUTF8($imv->finalidade) == 'Locacao' ? 'LOCAÇÃO' : 'VENDA'),
@@ -496,10 +503,18 @@ class SiteController extends Controller
             'observacao4'   => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->observacao4)),
             'estrutura'     => Util::getStringUTF8($imv->estrutura),
             'google_maps'   => Util::getGoogleMaps($imv->endereco_1, $imv->bairro, $imv->cidade . '-' . $imv->uf),
+            
+            'url_amigavel'  => Str::slug(Util::getStringUTF8($imv->finalidade)) .
+                            "+" . Str::slug(Util::getStringUTF8($imv->tp_bem)) .
+                            "+" . Str::slug(Util::getStringUTF8($imv->bairro))  .
+                            "+" . Str::slug(Util::getStringUTF8($imv->cidade)) . '-' . Str::slug($imv->uf),
+            
+            /*
             'url_amigavel'  => Util::getStringUTF8($imv->finalidade) .
                                 "+" . Util::getStringUTF8($imv->tp_bem) .
                                 "+" . Util::getStringUTF8($imv->bairro)  .
                                 "+" . Util::getStringUTF8($imv->cidade) . '-' . $imv->uf,
+            */
         ];
 
 
@@ -520,16 +535,17 @@ class SiteController extends Controller
 
         foreach ($qtde as $key => $qtd) {
 
-            if($qtd['item'] == 'DormitÃ³rio'){
+            // reconhece nomes longos (legados) E curtos (CDADM atual: Quarto/Banheiro/Garagem/Suite)
+            if(in_array($qtd['item'], ['DormitÃ³rio', 'Dormitorio', 'Dormitório', 'Quarto'])){
                 $imovel['qtde_quartos'] = $qtd['qtd'];
             }
-            if($qtd['item'] == 'Banheiros'){
+            if(in_array($qtd['item'], ['Banheiros', 'Banheiro'])){
                 $imovel['qtde_banheiro'] = $qtd['qtd'];
             }
-            if($qtd['item'] == 'VAGA(S) DE GARAGEM'){
+            if(in_array($qtd['item'], ['VAGA(S) DE GARAGEM', 'Garagem', 'Garagem(ns)'])){
                 $imovel['qtde_garagens'] = $qtd['qtd'];
             }
-            if($qtd['item'] == 'SuÃ­te(s)'){
+            if(in_array($qtd['item'], ['SuÃ­te(s)', 'Suite(s)', 'Suíte(s)', 'Suite', 'Suíte'])){
                 $imovel['qtde_suites'] = $qtd['qtd'];
             }
             if($qtd['item'] == 'S/ SUÃ­TE'){
@@ -605,10 +621,18 @@ class SiteController extends Controller
                     'observacao4'   => Util::getStringUTF8(str_replace(chr(10), '<br>', $imv->observacao4)),
                     'estrutura'     => Util::getStringUTF8($imv->estrutura),
                     'google_maps'   => Util::getGoogleMaps($imv->endereco_1, $imv->bairro, $imv->cidade . '-' . $imv->uf),
+                    
+                    'url_amigavel'  => Str::slug(Util::getStringUTF8($imv->finalidade)) .
+                            "+" . Str::slug(Util::getStringUTF8($imv->tp_bem)) .
+                            "+" . Str::slug(Util::getStringUTF8($imv->bairro))  .
+                            "+" . Str::slug(Util::getStringUTF8($imv->cidade)) . '-' . Str::slug($imv->uf),
+                    
+                    /*
                     'url_amigavel'  => Util::getStringUTF8($imv->finalidade) .
                                         "+" . Util::getStringUTF8($imv->tp_bem) .
                                         "+" . Util::getStringUTF8($imv->bairro)  .
                                         "+" . Util::getStringUTF8($imv->cidade) . '-' . $imv->uf,
+                    */
             ];
 
             $imoveis[$i]['whatsapp'] = $this->getUrlWhatsApp($imoveis[$i]);
@@ -618,16 +642,17 @@ class SiteController extends Controller
 
             foreach ($qtde as $key => $qtd) {
 
-                if($qtd['item'] == 'DormitÃ³rio'){
+                // reconhece nomes longos (legados) E curtos (CDADM atual: Quarto/Banheiro/Garagem/Suite)
+                if(in_array($qtd['item'], ['DormitÃ³rio', 'Dormitorio', 'Dormitório', 'Quarto'])){
                     $imoveis[$i]['qtde_quartos'] = $qtd['qtd'];
                 }
-                if($qtd['item'] == 'Banheiros'){
+                if(in_array($qtd['item'], ['Banheiros', 'Banheiro'])){
                     $imoveis[$i]['qtde_banheiro'] = $qtd['qtd'];
                 }
-                if($qtd['item'] == 'VAGA(S) DE GARAGEM'){
+                if(in_array($qtd['item'], ['VAGA(S) DE GARAGEM', 'Garagem', 'Garagem(ns)'])){
                     $imoveis[$i]['qtde_garagens'] = $qtd['qtd'];
                 }
-                if($qtd['item'] == 'SuÃ­te(s)'){
+                if(in_array($qtd['item'], ['SuÃ­te(s)', 'Suite(s)', 'Suíte(s)', 'Suite', 'Suíte'])){
                     $imoveis[$i]['qtde_suites'] = $qtd['qtd'];
                 }
                 if($qtd['item'] == 'S/ SUÃ­TE'){
@@ -815,7 +840,8 @@ class SiteController extends Controller
 
     private function getImagemPrincipal($id_bem)
     {
-        $aPath = '/home/sambura/img/';
+        $aPath = '/opt/htdoc_geral/encontra/encontra/common/imagens/img/'; // LOCAL - teste
+        //$aPath = '/home/sambura/img/';
         //$aPath = '/opt/www/nossolar/public/img/';
             $aNome = sprintf("????-%09d.???", $id_bem);
             $aArrayArq = glob($aPath . $aNome);
@@ -823,6 +849,9 @@ class SiteController extends Controller
             $aArrayPrefixos = [
             'imgr', 'im01', 'impl', 'im02', 'im03', 'im04', 'im05',
             'im06', 'im07', 'im08', 'im09', 'im10',
+            // LOCAL - prefixos de album ordenado (im20..im39)
+            'im20', 'im21', 'im22', 'im23', 'im24', 'im25', 'im26', 'im27', 'im28', 'im29',
+            'im30', 'im31', 'im32', 'im33', 'im34', 'im35', 'im36', 'im37', 'im38', 'im39',
             ];
 
             foreach($aArrayPrefixos as $aPref) {
@@ -845,7 +874,8 @@ class SiteController extends Controller
             if(isset($aArrayRtn)){
                 $imagem_0 = $aArrayRtn[0];
                 $imagem_1 = array_filter($aArrayArq);
-                $url = 'https://www.encontraimoveis.com.br/img/';
+                $url = '/img/'; // LOCAL - serve via symlink public/img
+                //$url = 'https://www.encontraimoveis.com.br/img/';
                 $url_img = $url . $imagem_0;
                 //$url_img  = (Storage::disk('public')->exists('img/' . $imagem_0) ? $url . $imagem_0 : asset('images/logo.png'));
             }else{
@@ -860,7 +890,8 @@ class SiteController extends Controller
     {
         //$aPath = '/home/jmimobiliaria/novo.jmimobiliariaivp.com.br/public/storage/img/';
         ///home/sambura/public_html/img/im01-000039050.jpg
-        $aPath = '/home/sambura/img/';
+        $aPath = '/opt/htdoc_geral/encontra/encontra/common/imagens/img/'; // LOCAL - teste
+        //$aPath = '/home/sambura/img/';
         $aNome = sprintf("????-%09d.???", $id_bem);
         $aArrayArq = glob($aPath . $aNome);
 
@@ -868,7 +899,7 @@ class SiteController extends Controller
        	$i=1;
 
             foreach($aArrayArq as $img) {
-                $str = substr($img, 18);
+                $str = basename($img); // LOCAL - robusto p/ qualquer path (era substr($img,18))
                 $str_c = substr($str, 0, 4);
 
                 if($str_c == "imgr"){
@@ -882,7 +913,8 @@ class SiteController extends Controller
             }
 
             ksort($aNewArray);
-            $url = 'https://www.encontraimoveis.com.br/img/';
+            $url = '/img/'; // LOCAL - serve via symlink public/img
+            //$url = 'https://www.encontraimoveis.com.br/img/';
 
             foreach($aNewArray as $kay => $img){
                 $imagem_1[$kay] = $url . $img;
